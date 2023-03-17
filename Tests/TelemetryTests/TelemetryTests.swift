@@ -3,32 +3,37 @@ import XCTest
 
 final class TelemetryTests: XCTestCase {
    func testExample() throws {
+      Self.systemTest()
       Self.testIdentity()
 //      Self.basicTest(testCase: self) // only works if real tracker id is used
    }
 }
 extension TelemetryTests {
    /**
-    * sys test
+    * Sys test
     */
    fileprivate static func systemTest() {
-      Swift.print("System.appBuild: \(System.appBuild)")
-      Swift.print("System.appIdentifier: \(System.appIdentifier)")
-      Swift.print("System.appName: \(System.appName)")
-      Swift.print("System.screenResolution: \(System.screenResolution)")
-      Swift.print("System.userAgent: \(System.userAgent)")
-      Swift.print("System.userLanguage: \(System.userLanguage)")
+      Swift.print("System.appBuild: \(System.appBuild)") // 20501
+      Swift.print("System.appIdentifier: \(System.appIdentifier)") // com.apple.dt.xctest.tool
+      Swift.print("System.appName: \(System.appName)") // xctest
+      Swift.print("System.screenResolution: \(System.screenResolution)") // 1440.0x900.0
+      Swift.print("System.userLanguage: \(System.userLanguage)") // en-US etc
+      Swift.print("System.userAgent: \(System.userAgent)") // Mozilla/5.0...
    }
    /**
     * ID test
     */
    fileprivate static func testIdentity() {
-      let id = Identity.uniqueUserIdentifier(type: .userdefault)
-      Swift.print("id: \(id)")
-      let id2 = Identity.uniqueUserIdentifier(type: .userdefault)
-      let isTheSame = id == id2
-      Swift.print("isTheSame: \(isTheSame ? "✅" : "🚫")")
-      XCTAssertTrue(isTheSame)
+      let test: (_ type: IDType) -> Void = { type in
+         let id = Identity.uniqueUserIdentifier(type: type)
+         Swift.print("id: \(id)")
+         let id2 = Identity.uniqueUserIdentifier(type: type)
+         let isTheSame = id == id2
+         Swift.print("\(String(describing: type)) isTheSame: \(isTheSame ? "✅" : "🚫")")
+         XCTAssertTrue(isTheSame)
+      }
+      test(.userdefault) // test userdefault
+      test(.keychain) // test keychain
    }
    /**
     * Test calling Google analytics

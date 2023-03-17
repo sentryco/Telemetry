@@ -4,8 +4,10 @@ import UIKit
 #elseif os(macOS)
 import Cocoa
 #endif
-
-class System { // - Fixme: ⚠️️ rename to sys?
+/**
+ *  - Fixme: ⚠️️ rename to sys?
+ */
+class System {
    /**
     * app name
     */
