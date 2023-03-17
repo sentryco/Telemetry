@@ -71,7 +71,7 @@ class System {
       let osVersion = currentDevice.systemVersion.replacingOccurrences(of: ".", with: "_")
       let fallbackAgent = "Mozilla/5.0 (\(currentDevice.model); CPU iPhone OS \(osVersion) like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13T534YI" // swiftlint:disable:this line_length
       #endif
-      
+
       #if SUPPORTS_WEBKIT
       // must be captured in instance variable to avoid invalidation
       webViewForUserAgentDetection = WKWebView() /
@@ -89,4 +89,3 @@ class System {
       #endif
    }()
 }
-

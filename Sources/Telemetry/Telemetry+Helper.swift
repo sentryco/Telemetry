@@ -20,7 +20,7 @@ extension Telemetry {
       queryArgs["aip"] = anonymizeIP ? "1" : nil
       let arguments = queryArgs.combinedWith(parameters)
       guard let url = Self.getURL(with: arguments) else { return }
-      let task = session.dataTask(with: url) { data, response, error in
+      let task = session.dataTask(with: url) { _, _, error in
          if let errorResponse = error?.localizedDescription {
             Swift.print("Failed to deliver GA Request. ", errorResponse)
          }
@@ -47,7 +47,7 @@ extension Telemetry {
          "ua": System.userAgent,
          "ul": System.userLanguage,
          "sr": System.screenResolution,
-         "v": "1", // Fix: what is this?
+         "v": "1" // Fix: what is this?
       ]
    }
    /**

@@ -1,4 +1,3 @@
-
 extension Dictionary {
     func combinedWith(_ other: [Key: Value]) -> [Key: Value] {
         var dict = self

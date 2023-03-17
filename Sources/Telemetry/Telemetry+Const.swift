@@ -35,6 +35,5 @@ extension Telemetry {
    /**
     * network, rename to urlSession
     */
-   public static let session: URLSession = URLSession.shared
+   public static let session = URLSession.shared
 }
-

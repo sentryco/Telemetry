@@ -81,5 +81,3 @@ extension Telemetry {
       send(type: "event", parameters: params, complete: complete)
    }
 }
-
-

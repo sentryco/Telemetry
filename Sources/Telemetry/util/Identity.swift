@@ -105,4 +105,3 @@ public enum IDType { //
    case userdefault
    case keychain
 }
-
