@@ -25,7 +25,9 @@ Telemetry.session(start: false) // applicationDidEnterBackground
 
 ### Gotchas:
 - Telemetry will automatically request that Google Analytics anonymize user IPs in order to comply with GDPR.
-- Stores a random UUID that uniquely identifies the user/install using the native UserDefaults . standard. The user identifier may be lost if the UserDefaults are cleared or altered in any other way, and the Telemetry will create a new, unique identifier in its place.
+The token can be obtained from the admin page of the tracked Google Analytics entity.
+- 
+- Firebase crashlytics is the way to go now days. Its also free to use etc. But can be over the top complex. You have to use their SDK etc. Sometimes simple is better etc.
 
 ### Resources:
 - Anonymous GA: https://stackoverflow.com/questions/50392242/how-anonymize-google-analytics-for-ios-for-gdpr-rgpd-purpose
@@ -33,9 +35,7 @@ Telemetry.session(start: false) // applicationDidEnterBackground
 - Guide on identifiers: https://gist.github.com/hujunfeng/6265995
 
 ### Todo:
-- Rename package to Telemetry? ✅
-- add more doc to readme ✅
-- Add documentation to this readme on how to setup Google analytics for your google account etc. 👈
-- Seems like firebase crashlytics is the way to go now days. Its also free to use etc
-- Begin turning the pseudo code into production code 👈 🏀
+- Add documentation to this readme on how to setup Google analytics for your google account etc
+- Seems like 
+- Combine telemetry with logger tests. And test for errors and warnings etc
 - improve documentation

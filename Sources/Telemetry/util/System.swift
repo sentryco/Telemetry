@@ -4,41 +4,51 @@ import UIKit
 #elseif os(macOS)
 import Cocoa
 #endif
-// UIDevice.current.name             // e.g. "My iPhone"
-// UIDevice.current.model            // e.g. @"iPhone", @"iPod touch"
-// UIDevice.current.localizedModel   // localized version of model
-// UIDevice.current.systemName       // e.g. @"iOS"
-// UIDevice.current.systemVersion    // e.g. @"15.5"
-class System { // rename to sys?
-   // app name
-   static let appName: String = {
+
+class System { // - Fixme: ⚠️️ rename to sys?
+   /**
+    * app name
+    */
+   internal static let appName: String = {
       Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ?? "(not set)"
    }()
-   // app id
-   static let appIdentifier: String = {
+   /**
+    * app id
+    */
+   internal static let appIdentifier: String = {
       Bundle.main.object(forInfoDictionaryKey: "CFBundleIdentifier") as? String ?? "(not set)"
    }()
-   // app ver
-   static let appVersion: String = {
+   /**
+    * app ver
+    */
+   internal static let appVersion: String = {
       Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "(not set)"
    }()
-   // app build
-   static let appBuild: String = {
+   /**
+    * app build
+    */
+   internal static let appBuild: String = {
       Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String ?? "(not set)"
    }()
-   // ver and build
-   static let formattedVersion: String = {
+   /**
+    * ver and build
+    */
+   internal static let formattedVersion: String = {
       "\(appVersion) (\(appBuild))"
    }()
-   // lang
-   static let userLanguage: String = {
+   /**
+    * lang
+    */
+   internal static let userLanguage: String = {
       guard let locale = Locale.preferredLanguages.first, locale.count > 0 else {
          return "(not set)"
       }
       return locale
    }()
-   // user screen resolution
-   static let screenResolution: String = {
+   /**
+    * user screen resolution
+    */
+   internal static let screenResolution: String = {
       #if os(iOS)
       let size = UIScreen.main.nativeBounds.size
       #elseif os(macOS)
@@ -46,7 +56,10 @@ class System { // rename to sys?
       #endif
       return "\(size.width)x\(size.height)"
    }()
-   static let userAgent: String = {
+   /**
+    * userAgent
+    */
+   internal static let userAgent: String = {
       #if os(macOS)
       let osVersion = ProcessInfo.processInfo.operatingSystemVersionString
       let versionString = osVersion.replacingOccurrences(of: ".", with: "_")
