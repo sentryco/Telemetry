@@ -1,3 +1,7 @@
+![mit](https://img.shields.io/badge/License-MIT-brightgreen.svg)
+![platform](https://img.shields.io/badge/Platform-iOS/macOS-blue.svg)
+![Lang](https://img.shields.io/badge/Language-Swift%205-orange.svg)
+[![SPM compatible](https://img.shields.io/badge/SPM-compatible-4BC51D.svg?style=flat)](https://github.com/apple/swift)
 [![Tests](https://github.com/sentryco/Telemetry/actions/workflows/Tests.yml/badge.svg)](https://github.com/sentryco/Telemetry/actions/workflows/Tests.yml)
 [![codebeat badge](https://codebeat.co/badges/5785dd6c-aa75-48a6-a222-0874b2b93e2c)](https://codebeat.co/projects/github-com-sentryco-telemetry-main)
 
@@ -29,7 +33,7 @@ Telemetry.session(start: false) // applicationDidEnterBackground
 ### Gotchas:
 - Telemetry will automatically request that Google Analytics anonymize user IPs in order to comply with GDPR.
 The token can be obtained from the admin page of the tracked Google Analytics entity.
-- 
+-
 - Firebase crashlytics is the way to go now days. Its also free to use etc. But can be over the top complex. You have to use their SDK etc. Sometimes simple is better etc.
 
 ### Resources:
