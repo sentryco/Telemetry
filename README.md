@@ -7,13 +7,13 @@
 ### Events
 With the Telemetry's event() method, you can monitor any event you want.
 ```swift
-Telemetry.event("Authentication", action: "Sign Up Completed")
+Telemetry.event("Authorize", action: "Access granted")
 ```
 
 ### Screenviews
 You should frequently keep track of the "screens" the user navigates to. Your ViewController's viewDidAppear is a logical place to do that. The Telemetry's screenView() method can be used; it performs the same function as event().
 ```swift
-Telemetry.screenView("Beer")
+Telemetry.screenView("Cheers")
 ```
 
 ### Sessions
@@ -37,7 +37,7 @@ The token can be obtained from the admin page of the tracked Google Analytics en
 - Guide on identifiers: https://gist.github.com/hujunfeng/6265995
 
 ### Todo:
-- Add documentation to this readme on how to setup Google analytics for your google account etc
-- Seems like 
+- Add lint
+- Add GH actions
+- Add documentation to this readme on how to setup Google analytics for your google account etc 👈
 - Combine telemetry with logger tests. And test for errors and warnings etc
-- improve documentation
