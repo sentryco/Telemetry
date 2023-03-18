@@ -33,7 +33,6 @@ Telemetry.session(start: false) // applicationDidEnterBackground
 ### Gotchas:
 - Telemetry will automatically request that Google Analytics anonymize user IPs in order to comply with GDPR.
 The token can be obtained from the admin page of the tracked Google Analytics entity.
--
 - Firebase crashlytics is the way to go now days. Its also free to use etc. But can be over the top complex. You have to use their SDK etc. Sometimes simple is better etc.
 
 ### Resources:
