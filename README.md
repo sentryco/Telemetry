@@ -42,7 +42,7 @@ The token can be obtained from the admin page of the tracked Google Analytics en
 - Guide on identifiers: https://gist.github.com/hujunfeng/6265995
 
 ### Todo:
-- Add lint
-- Add GH actions
+- Add lint ✅
+- Add GH actions ✅
 - Add documentation to this readme on how to setup Google analytics for your google account etc 👈
 - Combine telemetry with logger tests. And test for errors and warnings etc
