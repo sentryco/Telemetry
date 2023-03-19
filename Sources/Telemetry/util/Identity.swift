@@ -44,6 +44,15 @@ extension Identity {
       #if os(iOS)
       return UIDevice.current.identifierForVendor?.uuidString // UIDevice.current.identifierForVendor
       #elseif os(macOS)
+      let dev = IOServiceMatching("IOPlatformExpertDevice")
+      let platformExpert: io_service_t = IOServiceGetMatchingService(kIOMainPortDefault/* ⚠️️ was kIOMasterPortDefault*/, dev)
+      let serialNumberAsCFString = IORegistryEntryCreateCFProperty(platformExpert, kIOPlatformUUIDKey as CFString, kCFAllocatorDefault, 0)
+      IOObjectRelease(platformExpert)
+      let ser: CFTypeRef = serialNumberAsCFString?.takeUnretainedValue() as CFTypeRef
+      if let result = ser as? String { return result }
+      return nil
+      #else
+      Swift.print("OS not supported")
       return nil
       #endif
    }
