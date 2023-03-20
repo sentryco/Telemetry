@@ -10,9 +10,9 @@
 > Bridge to google analytics. Because sdks are black boxes
 
 ### Reasoning
-- App inteligence. How people are using an app. What to improve etc
-- Error and crash reporting. Get ahead of bad user experince by getting notified if there are bugs
-- Usage data. Which markets are using the app. Improve the app for that market etc
+- 🤖 App inteligence. How people are using an app. What to improve etc
+- 🐛 Error and crash reporting. Get ahead of bad user experince by getting notified if there are bugs
+- 🌍 Usage data. Which markets are using the app. Improve the app for that market etc
 
 ### Events
 With the Telemetry's event() method, you can monitor any event you want.
