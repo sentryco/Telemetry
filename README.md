@@ -55,6 +55,7 @@ The token can be obtained from the admin page of the tracked Google Analytics en
 - Anonymous GA: https://stackoverflow.com/questions/50392242/how-anonymize-google-analytics-for-ios-for-gdpr-rgpd-purpose
 - Guide on fingerprinting in iOS: https://nshipster.com/device-identifiers/
 - Guide on identifiers: https://gist.github.com/hujunfeng/6265995
+- Using Google Analytics for Tracking SaaS: https://reflectivedata.com/using-google-analytics-for-tracking-saas/
 
 ### Todo:
 - Add lint ✅
