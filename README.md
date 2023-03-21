@@ -35,6 +35,17 @@ Telemetry.session(start: true) // applicationDidBecomeActive
 Telemetry.session(start: false) // applicationDidEnterBackground
 ```
 
+### Exception
+Use exception to report warnings and errors
+```swift
+Telemetry.exception("Error - database not available", isFatal: false)
+```
+
+### Timing
+```swift
+// Add example for this later
+```
+
 ### Gotchas:
 - Telemetry will automatically request that Google Analytics anonymize user IPs in order to comply with GDPR.
 The token can be obtained from the admin page of the tracked Google Analytics entity.
