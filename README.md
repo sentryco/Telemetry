@@ -9,6 +9,11 @@
 
 > Bridge to google analytics. Because sdks are black boxes
 
+### Reasoning
+- 🤖 App inteligence. How people are using an app. What to improve etc
+- 🐛 Error and crash reporting. Get ahead of bad UX by getting notified if there are bugs
+- 🌍 Usage data. Which markets are using the app. Improve the app for that market etc
+
 ### Events
 With the Telemetry's event() method, you can monitor any event you want.
 ```swift
@@ -30,6 +35,17 @@ Telemetry.session(start: true) // applicationDidBecomeActive
 Telemetry.session(start: false) // applicationDidEnterBackground
 ```
 
+### Exception
+Use exception to report warnings and errors
+```swift
+Telemetry.exception("Error - database not available", isFatal: false)
+```
+
+### Timing
+```swift
+// Add example for this later
+```
+
 ### Gotchas:
 - Telemetry will automatically request that Google Analytics anonymize user IPs in order to comply with GDPR.
 The token can be obtained from the admin page of the tracked Google Analytics entity.
@@ -40,7 +56,8 @@ The token can be obtained from the admin page of the tracked Google Analytics en
 - Guide on fingerprinting in iOS: https://nshipster.com/device-identifiers/
 - Guide on identifiers: https://gist.github.com/hujunfeng/6265995
 - Nice tracker project: https://github.com/kafejo/Tracker-Aggregator
-- Another nixe tracker project: https://github.com/devxoul/Umbrella
+- Another nice tracker project: https://github.com/devxoul/Umbrella
+- Using Google Analytics for Tracking SaaS: https://reflectivedata.com/using-google-analytics-for-tracking-saas/
 
 ### Todo:
 - Add lint ✅
