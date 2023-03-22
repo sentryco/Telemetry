@@ -23,17 +23,26 @@ extension Telemetry {
     */
    public static var trackerId: String?
    /**
-    * Dictionary of custom key value pairs to add to every query.
+    * Custom dimension arguments
+    * - Description: Dictionary of custom key value pairs to add to every query.
     * - Remark: Use it for custom dimensions (cd1, cd2...).
     * - Note: More information on Custom Dimensions https://support.google.com/analytics/answer/2709828?hl=en
     */
-   public static var customDimensionArguments: [String: String]?
+   public static var customDimArgs: [String: String]?
    /**
-    * vendor, userdef, keychain
+    * Options are: .vendor, .userdef, .keychain
+    * - Remark: Type of persistence
+    * - Fixme: ⚠️️ rename to currentIdentifierType? or curIdType?
     */
    public static var idType: IDType = .userdefault
    /**
     * network, rename to urlSession
     */
    public static let session = URLSession.shared
+   /**
+    * Telemetry type
+    * - Description: A way to switch from ga-endpoint to aggregator-endpoint 
+    */
+   public static var tmType: TMType = .ga // .agg()
 }
+

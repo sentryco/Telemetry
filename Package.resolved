@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "filesugar",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/eonist/FileSugar.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "4f36d88760ceb810f762dce72828929515f7f729"
+      }
+    },
+    {
+      "identity" : "jsonsugar",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/eonist/JSONSugar.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "3934689850873d9f5b1fdf7f0e26785e6a1a9360"
+      }
+    }
+  ],
+  "version" : 2
+}

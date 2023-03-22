@@ -36,7 +36,8 @@ extension Identity {
  */
 extension Identity {
    /**
-    * - Remark: Changes on every simulator run etc (allegedly)
+    * Source of identifer to persist
+    * - Remark: Changes on every simulator run etc (allegedly) - Fixme: ⚠️️ confirm this
     * - Remark: Should persist between release app runs, but beta apps might genereate new uuid
     * - Remark: The MAC doesn't have anything equivalent to iOS's identifierForVendor or advertising Id alas.
     */

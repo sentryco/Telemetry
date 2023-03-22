@@ -39,6 +39,8 @@ The token can be obtained from the admin page of the tracked Google Analytics en
 - Anonymous GA: https://stackoverflow.com/questions/50392242/how-anonymize-google-analytics-for-ios-for-gdpr-rgpd-purpose
 - Guide on fingerprinting in iOS: https://nshipster.com/device-identifiers/
 - Guide on identifiers: https://gist.github.com/hujunfeng/6265995
+- Nice tracker project: https://github.com/kafejo/Tracker-Aggregator
+- Another nixe tracker project: https://github.com/devxoul/Umbrella
 
 ### Todo:
 - Add lint ✅

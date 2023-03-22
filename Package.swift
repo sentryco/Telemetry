@@ -10,11 +10,13 @@ let package = Package(
             name: "Telemetry",
             targets: ["Telemetry"])
     ],
-    dependencies: [],
+    dependencies: [
+      .package(url: "https://github.com/eonist/JSONSugar.git", branch: "master")
+    ],
     targets: [
         .target(
             name: "Telemetry",
-            dependencies: []),
+            dependencies: ["JSONSugar"]),
         .testTarget(
             name: "TelemetryTests",
             dependencies: ["Telemetry"])
