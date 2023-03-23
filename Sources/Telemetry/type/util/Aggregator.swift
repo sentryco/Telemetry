@@ -30,7 +30,6 @@ extension Aggregator {
     * - Fixme: ⚠️️ rename to send?
     */
    public func append(action: ActionKind) throws {
-//      Swift.print("append: \(action)")
       switch action {
       case let event as Event: events.append(event)
       case let session as Session: sessions.append(session)
@@ -46,6 +45,9 @@ extension Aggregator {
  * Persistence
  */
 extension Aggregator {
+   /**
+    * - Remark: If the app is sandboxed, this folder is somewhere else. Print the path in your app to get absolute path etc
+    */
    public static let tempFilePath: String = "\(NSHomeDirectory())/store.json" // or use tempfolder etc
    /**
     * Save current state to a file

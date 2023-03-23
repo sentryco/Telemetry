@@ -41,7 +41,8 @@ extension Telemetry {
    public static let session = URLSession.shared
    /**
     * Telemetry type
-    * - Description: A way to switch from ga-endpoint to aggregator-endpoint 
+    * - Description: A way to switch from ga-endpoint to aggregator-endpoint
+    * - Fixme: ⚠️️ rename to endPointType?
     */
    public static var tmType: TMType = .ga // .agg()
 }
