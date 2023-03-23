@@ -10,7 +10,7 @@
 > Bridge to google analytics. Because sdks are black boxes
 
 ### Reasoning
-- 🤖 App inteligence. How people are using an app. What to improve etc
+- 🤖 App intelligence. How people are using an app. What to improve etc
 - 🐛 Error and crash reporting. Get ahead of bad UX by getting notified if there are bugs
 - 🌍 Usage data. Which markets are using the app. Improve the app for that market etc
 
