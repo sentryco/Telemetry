@@ -15,19 +15,19 @@ class System {
       Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ?? "(not set)"
    }()
    /**
-    * app id
+    * App id
     */
    internal static let appIdentifier: String = {
       Bundle.main.object(forInfoDictionaryKey: "CFBundleIdentifier") as? String ?? "(not set)"
    }()
    /**
-    * app ver
+    * App ver
     */
    internal static let appVersion: String = {
       Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "(not set)"
    }()
    /**
-    * app build
+    * App build
     */
    internal static let appBuild: String = {
       Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String ?? "(not set)"
