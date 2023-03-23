@@ -3,8 +3,7 @@ import Foundation
  * const
  */
 extension Telemetry {
-   public typealias Complete = () -> Void
-   public static let defaultComplete: Complete = {}
+   public typealias Complete = (_ success: Bool) -> Void
    static let baseURL: URL? = .init(string: "https://www.google-analytics.com/")
 }
 /**
@@ -21,7 +20,7 @@ extension Telemetry {
     * - Remark: The token can be obtained from the admin page of the tracked Google Analytics entity.
     * - Remark: A valid Google Analytics tracker ID of form UA-XXXXX-XX must be set before reporting any events.
     */
-   public static var trackerId: String?
+   public static var trackerId: String = "UA-XXXXX-XX"
    /**
     * Custom dimension arguments
     * - Description: Dictionary of custom key value pairs to add to every query.

@@ -3,11 +3,11 @@ import XCTest
 
 final class TelemetryTests: XCTestCase {
    func testExample() throws {
-      // Self.systemTest()
-      // Self.testIdentity()
-      // Self.basicTest(testCase: self) // only works if real tracker id is used
-      // Self.aggTest()
-      Self.readAggStatsTest()
+       Self.systemTest()
+       Self.testIdentity()
+//       Self.basicTest(testCase: self) // only works if real tracker id is used
+       Self.aggTest()
+//      Self.readAggStatsTest()
    }
 }
 extension TelemetryTests {
@@ -42,19 +42,38 @@ extension TelemetryTests {
     * - Fixme: ⚠️️ only waits for event, fix the others later
     */
    fileprivate static func basicTest(testCase: XCTestCase) {
+      Swift.print("basicTest")
       Telemetry.idType = .userdefault // vendor doesn't work on mac or command-line-unit-test, and keychain doesnt work in comandline-unit-tests in an easy way
-      Telemetry.trackerId = "UA-XXXXX-XX" // - Fixme: ⚠️️ use real ga-tracker-id here or?
+      Telemetry.trackerId = "UA-XXXXX-XX" //"" // Use real ga-tracker-id here, to test properly etc
       // In many cases you'll want to track what "screens" that the user navigates to. A natural place to do that is in your ViewControllers viewDidAppear. You can use the screenView() method of the Telemetry which works the same as event().
-      Telemetry.action(ScreenView(name: "Cheers"))
-      // You can track individual sessions for a user by calling session(start: true) when the user opens the app and session(start: false) when they close the app. Here's an example of how to do that in your apps UIApplicationDelegate:
-      Telemetry.action(Session(start: true)) // applicationDidBecomeActive
-      Telemetry.action(Session(start: false)) // applicationDidEnterBackground
-      // You can track any event you wish to using the event() method. Example:
-      let asyncDone = testCase.expectation(description: "Async function") // expectation is in the XCTestCase
-      Telemetry.action(Event(category: "Authorize", action: "Access granted")) {
-         asyncDone.fulfill() // call this to indicate the test was successful
+      let screenView = testCase.expectation(description: "screen view function")
+      Telemetry.action(ScreenView(name: "Cheers")) { success in
+         Swift.print("screenView complete:  \(success)")
+         screenView.fulfill()
       }
-      testCase.wait(for: [asyncDone], timeout: 10) // Add after work has been called
+      // You can track individual sessions for a user by calling session(start: true) when the user opens the app and session(start: false) when they close the app. Here's an example of how to do that in your apps UIApplicationDelegate:
+      let sessionStart = testCase.expectation(description: "session start function")
+      Telemetry.action(Session(start: true)) { success in// applicationDidBecomeActive
+         Swift.print("session start complete: \(success)")
+         sessionStart.fulfill()
+      }
+      let sessionEnd = testCase.expectation(description: "session end function")
+      Telemetry.action(Session(start: false)) { success in // applicationDidEnterBackground
+         Swift.print("session end complete: \(success)")
+         sessionEnd.fulfill()
+      }
+      // You can track any event you wish to using the event() method. Example:
+      let authDone = testCase.expectation(description: "auth function") // expectation is in the XCTestCase
+      Telemetry.action(Event(category: "Authorize", action: "Access granted")) { success in
+         Swift.print("event complete: \(success)")
+         authDone.fulfill() // call this to indicate the test was successful
+      }
+      let exceptionCalled = testCase.expectation(description: "exception function")
+      Telemetry.action(Exception(description: "🐛 MainView - cell error", isFatal: false)) { success in
+         Swift.print("Exception complete: \(success)")
+         exceptionCalled.fulfill()
+      }
+      testCase.wait(for: [screenView, sessionStart, sessionEnd, authDone, exceptionCalled], timeout: 10) // Add after work has been called
    }
    /**
     * Stats test with local aggregator

@@ -8,14 +8,14 @@ extension Telemetry {
     * - Fixme: ⚠️️ add example
     * - Parameters:
     *   - action: - Fixme: ⚠️️ doc
-    *   - complete: - Fixme: ⚠️️ dox
+    *   - complete: Only use complete for the GA type
     */
-   public static func action(_ action: ActionKind, complete: @escaping Complete = defaultComplete) {
+   public static func action(_ action: ActionKind, complete: Complete? = nil) {
       if case TMType.ga = tmType {
          send(type: action.key, parameters: action.output, complete: complete)
       } else if case TMType.agg(let agg) = tmType{
          do { try agg.append(action: action) }
-         catch { Swift.print("error: \(error.localizedDescription)") }
+         catch { Swift.print("Error: \(error.localizedDescription)") }
       }
    }
 }
@@ -24,14 +24,14 @@ extension Telemetry {
  */
 extension Telemetry {
    /**
+    * - Fixme: ⚠️️ add default tracker id?
     * - Parameters:
     *   - send: timing, exception, pageview, session, exception etc
     *   - parameters: custom params for the type
     *   - type: - Fixme: ⚠️️ add doc
     *   - complete: - Fixme: ⚠️️ add doc
     */
-   internal static func send(type: String?, parameters: [String: String], complete: @escaping Complete = defaultComplete) {
-      guard let _ = trackerId else { Swift.print("No tracker ID"); return }
+   internal static func send(type: String?, parameters: [String: String], complete: Complete? = nil) {
       var queryArgs = Self.queryArgs // Meta data
       if let type: String = type, !type.isEmpty {
          queryArgs.updateValue(type, forKey: "t")
@@ -44,9 +44,10 @@ extension Telemetry {
       guard let url = Self.getURL(with: arguments) else { return }
       let task = session.dataTask(with: url) { _, _, error in
          if let errorResponse = error?.localizedDescription {
-            Swift.print("Failed to deliver GA Request. ", errorResponse)
+            Swift.print("⚠️️ Failed to deliver GA Request. ", errorResponse)
+            complete?(false)
          }
-         complete()
+         complete?(true)
       }
       task.resume()
    }
@@ -59,8 +60,7 @@ extension Telemetry {
     * URL query (Meta data)
     */
    fileprivate static var queryArgs: [String: String] {
-      guard let trackerId = Self.trackerId else { return [:] }
-      return [
+      [
          "tid": trackerId, // GA tracker id
          "aid": System.appIdentifier, // App id
          "cid": Identity.uniqueUserIdentifier(type: idType), // User id
