@@ -51,6 +51,8 @@ Telemetry.exception("Error - database not available", isFatal: false)
 The token can be obtained from the admin page of the tracked Google Analytics entity.
 - Firebase crashlytics is the way to go now days. Its also free to use etc. But can be over the top complex. You have to use their SDK etc. Sometimes simple is better etc.
 - When setting up google analytics account. Make sure to use legacy `Universal Analytics property` and not GA4. This legacy option is under advance menu when you setup the account
+- Why are closed source sdks bad? From apples app-review guidelines: `Ensure that all software frameworks and dependencies also adhere to the App Store Review Guidelines`
+
 ### Resources:
 - Anonymous GA: https://stackoverflow.com/questions/50392242/how-anonymize-google-analytics-for-ios-for-gdpr-rgpd-purpose
 - Guide on fingerprinting in iOS: https://nshipster.com/device-identifiers/
