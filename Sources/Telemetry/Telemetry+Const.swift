@@ -45,4 +45,3 @@ extension Telemetry {
     */
    public static var tmType: TMType = .ga // .agg()
 }
-

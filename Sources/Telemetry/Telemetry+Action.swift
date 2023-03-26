@@ -13,7 +13,7 @@ extension Telemetry {
    public static func action(_ action: ActionKind, complete: Complete? = nil) {
       if case TMType.ga = tmType {
          send(type: action.key, parameters: action.output, complete: complete)
-      } else if case TMType.agg(let agg) = tmType{
+      } else if case TMType.agg(let agg) = tmType {
          do { try agg.append(action: action) }
          catch { Swift.print("Error: \(error.localizedDescription)") }
       }
@@ -77,7 +77,7 @@ extension Telemetry {
     * - Parameter parameters: parameters to turn into a url request
     */
    fileprivate static func getURL(with parameters: [String: String]) -> URL? {
-      let characterSet: CharacterSet = CharacterSet.urlPathAllowed
+      let characterSet = CharacterSet.urlPathAllowed
       let joined: String = parameters.reduce("collect?") { path, query in
          let value = query.value.addingPercentEncoding(withAllowedCharacters: characterSet)
          return .init(format: "%@%@=%@&", path, query.key, value ?? "")
