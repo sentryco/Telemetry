@@ -4,7 +4,7 @@ import PackageDescription
 
 let package = Package(
     name: "Telemetry",
-    platforms: [.iOS(.v13), .macOS(.v12)], // update to ios15?
+    platforms: [.iOS(.v15), .macOS(.v12)],
     products: [
         .library(
             name: "Telemetry",
