@@ -2,7 +2,7 @@ import Foundation
 
 extension Telemetry {
    /**
-    * Action call that can take type 
+    * Action call that can take type
     * - Remark: The class support tracking of sessions, screen/page views, events and timings with optional custom dimension parameters.
     * - Remark: For a full list of all the supported parameters please refer to the [Google Analytics parameter reference](https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters)
     * - Fixme: ⚠️️ add example
@@ -37,7 +37,7 @@ extension Telemetry {
          queryArgs.updateValue(type, forKey: "t")
       }
       if let customDim: [String: String] = self.customDimArgs {
-         queryArgs.merge(customDim, uniquingKeysWith: { _, new in new })
+         queryArgs.merge(customDim) { _, new in new }
       }
       queryArgs["aip"] = anonymizeIP ? "1" : nil
       let arguments: [String: String] = queryArgs.combinedWith(parameters)
