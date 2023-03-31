@@ -43,7 +43,7 @@ class System {
     * - Fixme: ⚠️️ En-us etc?
     */
    internal static let userLanguage: String = {
-      guard let locale = Locale.preferredLanguages.first, locale.count > 0 else {
+      guard let locale = Locale.preferredLanguages.first, !locale.isEmpty else {
          return "(not set)"
       }
       return locale
