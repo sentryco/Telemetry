@@ -8,6 +8,7 @@ public struct Event: ActionKind {
    /**
     * Tracks an event to Google Analytics.
     * - Remark: Generic events are reported using `event(_:action:label:parameters:)`.
+    * - Fixme: ⚠️️ rename to TMEvent
     * - Parameters:
     *   - category: The category of the event (ec).
     *   - action: The action of the event (ea).

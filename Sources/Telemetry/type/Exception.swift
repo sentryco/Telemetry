@@ -7,6 +7,7 @@ public struct Exception: ActionKind {
    /**
     * Tracks an exception event to Google Analytics.
     * - remark: Exceptions are reported using `exception(_:isFatal:parameters:)`
+    * - Fixme: ⚠️️ rename to TM...
     * - Parameters:
     *   - description: The description of the exception (ec).
     *   - isFatal: Indicates if the exception was fatal to the execution of the program (exf).

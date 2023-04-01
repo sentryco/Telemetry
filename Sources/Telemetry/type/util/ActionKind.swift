@@ -6,5 +6,5 @@ import Foundation
 public protocol ActionKind: Codable {
    var params: [String: String] { get }
    var output: [String: String] { get }
-   var key: String { get }
+   var key: String { get } // - Fixme: ⚠️️ add doc
 }

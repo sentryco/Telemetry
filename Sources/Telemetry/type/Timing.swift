@@ -8,7 +8,8 @@ public struct Timing: ActionKind {
    public let params: [String: String]
    /**
     * Tracks a timing to Google Analytics.
-    * - Remark: Timings are reported using `timing(_:name:label:time:parameters:)` with time parameter in seconds.
+    * - Remark: Timings are reported using `timing(_:name:label:time:parameters:)` with time parameter in seconds
+    * - Fixme: ⚠️️ rename to TM...
     * - Parameters:
     *   - category: The category of the timing (utc).
     *   - name: The variable name of the timing  (utv).

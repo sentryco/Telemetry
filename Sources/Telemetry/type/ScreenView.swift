@@ -8,6 +8,7 @@ public struct ScreenView: ActionKind {
     * - Remark: - Screen (page) views are reported using `screenView(_:parameters:)` with the name of the screen.
     * - Remark: `dh` - hostname as appIdentifier and `dp` - path as screen name with leading `/`
     * - Remark: and optional `dt` - document title as screen name pageview parameters for valid hit request.
+    * - Fixme: ⚠️️ rename to TM...
     * - Parameters:
     *   - name: The name of the screen. Make sure it does not have spaces, use .replacingOccurrences(of: " ", with: "") etc
     *   - params: A dictionary of additional parameters for the event.
