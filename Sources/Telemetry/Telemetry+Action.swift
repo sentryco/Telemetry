@@ -44,6 +44,7 @@ extension Telemetry {
       guard let url: URL = Self.getURL(with: arguments) else { return }
       let task = session.dataTask(with: url) { _, _, error in
          if let errorResponse = error?.localizedDescription {
+            // - Fixme: ⚠️️ shorten error respons to mac 20-30 chars?
             Swift.print("⚠️️ Failed to deliver GA Request. ", errorResponse)
             complete?(false)
          }
