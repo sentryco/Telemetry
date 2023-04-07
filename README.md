@@ -62,7 +62,4 @@ The token can be obtained from the admin page of the tracked Google Analytics en
 - Using Google Analytics for Tracking SaaS: https://reflectivedata.com/using-google-analytics-for-tracking-saas/
 
 ### Todo:
-- Add lint ✅
-- Add GH actions ✅
-- Add documentation to this readme on how to setup Google analytics for your google account etc 👈
-- Combine telemetry with logger tests. And test for errors and warnings etc
+- Add documentation to this readme on how to setup Google analytics for your google account etc 🚧
