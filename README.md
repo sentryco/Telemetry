@@ -14,7 +14,7 @@
 - 🐛 Error and crash reporting. Get ahead of bad UX by getting notified if there are bugs
 - 🌍 Usage data. Which markets are using the app. Improve the app for that market etc
 
-> **Warning**
+> **Warning**  
 > Currenly using GA3 API which is sunset in July. This lib will migrate to GA4 before that
 
 ### Events
