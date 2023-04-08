@@ -14,6 +14,9 @@
 - 🐛 Error and crash reporting. Get ahead of bad UX by getting notified if there are bugs
 - 🌍 Usage data. Which markets are using the app. Improve the app for that market etc
 
+> **Warning**  
+> Currenly using GA3 API which is sunset in July. This lib will migrate to GA4 before that
+
 ### Events
 With the Telemetry's event() method, you can monitor any event you want.
 ```swift
@@ -62,7 +65,4 @@ The token can be obtained from the admin page of the tracked Google Analytics en
 - Using Google Analytics for Tracking SaaS: https://reflectivedata.com/using-google-analytics-for-tracking-saas/
 
 ### Todo:
-- Add lint ✅
-- Add GH actions ✅
-- Add documentation to this readme on how to setup Google analytics for your google account etc 👈
-- Combine telemetry with logger tests. And test for errors and warnings etc
+- Add documentation to this readme on how to setup Google analytics for your google account etc 🚧
