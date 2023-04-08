@@ -1,5 +1,7 @@
 import Foundation
-
+/**
+ * - Fixme: ⚠️️ rename to TMEvent
+ */
 public struct Event: ActionKind {
    public let category: String
    public let action: String

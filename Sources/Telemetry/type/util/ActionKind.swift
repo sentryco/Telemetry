@@ -1,6 +1,7 @@
 import Foundation
 /**
  * Protocol for structs types
+ * - Fixme: ⚠️️ Rename to TMActionKind? or TMAction?
  * - Fixme: ⚠️️ probably remove params from json etc
  */
 public protocol ActionKind: Codable {

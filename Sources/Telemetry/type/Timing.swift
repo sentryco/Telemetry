@@ -1,5 +1,7 @@
 import Foundation
-
+/**
+ * - Fixme: ⚠️️ Rename to TMTiming
+ */
 public struct Timing: ActionKind {
    public let category: String
    public let name: String

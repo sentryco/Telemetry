@@ -1,5 +1,5 @@
 import Foundation
-
+// - Fixme: ⚠️️ rename to TMSession
 public struct Session: ActionKind {
    public let start: Bool
    public let params: [String: String]

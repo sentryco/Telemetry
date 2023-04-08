@@ -7,6 +7,7 @@ import JSONSugar
  * - Fixme: ⚠️️ add timestamping?
  * - Fixme: ⚠️️ add more advance sessions, with uuid and timestamp etc
  * - Fixme: ⚠️️ add support for storing meta data etc. Might require sqlite etc. since json file will get big and cluttered etc
+ * - Fixme: ⚠️️ Rename to TMAggregator?
  */
 public class Aggregator: Codable {
    public var filePath: String

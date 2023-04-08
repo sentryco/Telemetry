@@ -1,5 +1,5 @@
 import Foundation
-
+// - Fixme: ⚠️️ rename to TMException
 public struct Exception: ActionKind {
    public let description: String
    public let isFatal: Bool

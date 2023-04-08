@@ -13,6 +13,7 @@ import Cocoa
  * - Note: objc: https://github.com/guojunliu/XYUUID and https://github.com/mushank/ZKUDID
  * - Note: Objc: https://stackoverflow.com/a/20339893/5389500 and https://developer.apple.com/forums/thread/127567
  * - Fixme: ⚠️️ Rename to id?
+ * - Fixme: ⚠️️ Rename to TMID or TMIdentity
  */
 class Identity {}
 
