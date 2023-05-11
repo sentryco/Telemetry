@@ -7,12 +7,12 @@
 
 # 🔬 Telemetry
 
-> Bridge to google analytics. Because sdks are black boxes
+> Telemetry is an open SDK for google analytics. Because closed source sdks are terrible for security
 
 ### Reasoning
-- 🤖 App intelligence. How people are using an app. What to improve etc
-- 🐛 Error and crash reporting. Get ahead of bad UX by getting notified if there are bugs
-- 🌍 Usage data. Which markets are using the app. Improve the app for that market etc
+- 🤖 GA is a great way to gather real engagement data and measure traction. In order to improve it.
+- 🐛 GA is great for error and crash reporting. Get ahead of UX issues by getting notified if there are bugs
+- 🌍 GA is great for measuring which markets that are using your app.
 
 > **Warning**  
 > Currenly using GA3 API which is sunset in July. This lib will migrate to GA4 before that
