@@ -1,6 +1,6 @@
 import Foundation
 /**
- * - Fixme: ⚠️️ Rename to TMTiming
+ * Timing
  */
 public struct Timing: ActionKind {
    public let category: String
@@ -11,12 +11,11 @@ public struct Timing: ActionKind {
    /**
     * Tracks a timing to Google Analytics.
     * - Remark: Timings are reported using `timing(_:name:label:time:parameters:)` with time parameter in seconds
-    * - Fixme: ⚠️️ rename to TM...
     * - Parameters:
-    *   - category: The category of the timing (utc).
-    *   - name: The variable name of the timing  (utv).
-    *   - label: The variable label for the timing  (utl).
-    *   - time: Length of the timing (utt).
+    *   - category: The category of the timing (utc)
+    *   - name: The variable name of the timing (utv)
+    *   - label: The variable label for the timing (utl)
+    *   - time: Length of the timing (utt)
     *   - params: A dictionary of additional parameters for the timing
     */
    public init(category: String, name: String, label: String = "", time: TimeInterval, params: [String: String] = .init()) {
@@ -27,6 +26,9 @@ public struct Timing: ActionKind {
       self.params = params
    }
 }
+/**
+ * Extension
+ */
 extension Timing {
    public var key: String { "timing" }
    public var output: [String: String] {

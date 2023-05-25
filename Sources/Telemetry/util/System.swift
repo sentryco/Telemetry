@@ -5,10 +5,9 @@ import UIKit
 import Cocoa
 #endif
 /**
- *  - Fixme: ⚠️️ rename to sys? or TMSys
- *  - Fixme: ⚠️️ move to Bundle extension
+ *  - Fixme: ⚠️️ Move to Bundle extension?
  */
-class System {
+internal class System {
    /**
     * app name
     */

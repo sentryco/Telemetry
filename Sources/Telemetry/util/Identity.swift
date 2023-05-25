@@ -12,21 +12,20 @@ import Cocoa
  * - Note: complete solution in objc: https://gist.github.com/miguelcma/e8f291e54b025815ca46
  * - Note: objc: https://github.com/guojunliu/XYUUID and https://github.com/mushank/ZKUDID
  * - Note: Objc: https://stackoverflow.com/a/20339893/5389500 and https://developer.apple.com/forums/thread/127567
- * - Fixme: ⚠️️ Rename to id?
- * - Fixme: ⚠️️ Rename to TMID or TMIdentity
+ * - Fixme: ⚠️️ Rename to id? or keep Identity?
  */
 class Identity {}
 
 extension Identity {
    /**
-    * - Parameter type: - Fixme: ⚠️️ doc
+    * - Parameter type: type of id (vendor, userDef or keychain)
     */
    internal static func uniqueUserIdentifier(type: IDType) -> String {
       let id: String? = {
          switch type {
-         case .vendor: return vendorID // persistent between runs (in most cases)
-         case .userdefault: return userDefaultID // persistent between runs
-         case .keychain: return keychainID // persistent between installs
+         case .vendor: return vendorID // Persistent between runs (in most cases)
+         case .userdefault: return userDefaultID // Persistent between runs
+         case .keychain: return keychainID // Persistent between installs
          }
       }()
       return id ?? UUID().uuidString
@@ -74,7 +73,7 @@ extension Identity {
    fileprivate static var userDefaultID: String? {
       let userDefaults = UserDefaults.standard
       if userDefaults.object(forKey: "AppID") == nil {
-         let id = Self.vendorID ?? UUID().uuidString
+         let id: String = Self.vendorID ?? UUID().uuidString
          userDefaults.set(id, forKey: "AppID")
          userDefaults.synchronize()
       }
@@ -111,8 +110,8 @@ extension Identity {
 /**
  * Peristence level
  */
-public enum IDType { //
-   case vendor // Does not work on macOS
+public enum IDType {
+   case vendor // Does not work on macOS, or does it now? - Fixme: ⚠️️ confirm this
    case userdefault
    case keychain
 }

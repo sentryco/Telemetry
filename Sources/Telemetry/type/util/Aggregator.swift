@@ -2,11 +2,13 @@ import Foundation
 import FileSugar
 import JSONSugar
 /**
- * Local aggregator (for testing, useful for UITests etc and testing beore setting up GA etc)
- * - Fixme: ⚠️️ we could also use structured json, and store everything in one array etc?
- * - Fixme: ⚠️️ add timestamping?
- * - Fixme: ⚠️️ add more advance sessions, with uuid and timestamp etc
- * - Fixme: ⚠️️ add support for storing meta data etc. Might require sqlite etc. since json file will get big and cluttered etc
+ * Local aggregator
+ * - Remark: This can be used to save logs etc.
+ * - Remark: For testig it's better to use Console output. Se Logger repo for code etc
+ * - Fixme: ⚠️️ We could also use structured json, and store everything in one array etc?
+ * - Fixme: ⚠️️ Add timestamping?
+ * - Fixme: ⚠️️ Add more advance sessions, with uuid and timestamp etc
+ * - Fixme: ⚠️️ Add support for storing meta data etc. Might require sqlite etc. since json file will get big and cluttered etc
  * - Fixme: ⚠️️ Rename to TMAggregator?
  */
 public class Aggregator: Codable {
@@ -28,7 +30,7 @@ public class Aggregator: Codable {
 extension Aggregator {
    /**
     * Add action
-    * - Fixme: ⚠️️ rename to send?
+    * - Fixme: ⚠️️ Rename to send? or noterize or something?
     */
    public func append(action: ActionKind) throws {
       switch action {
@@ -37,7 +39,7 @@ extension Aggregator {
       case let exception as Exception: exceptions.append(exception)
       case let screenView as ScreenView: screenViews.append(screenView)
       case let timing as Timing: timings.append(timing)
-      default: Swift.print("not supported")
+      default: Swift.print("⚠️️ Not supported")
       }
       try persist() // (save on each call)
    }
@@ -53,7 +55,7 @@ extension Aggregator {
    public static let tempFilePath: String = "\(NSHomeDirectory())/store.json" // or use tempfolder etc
    /**
     * Save current state to a file
-    * - Fixme: ⚠️️ (add sqlite later, or coredata)
+    * - Fixme: ⚠️️ Add sqlite later, or coredata
     */
    public func persist() throws {
       let data: Data = try self.encode()
@@ -63,8 +65,8 @@ extension Aggregator {
    /**
     * Load previouse saved aggregator
     * - Parameters:
-    *   - filePath: path to store file
-    *   - reset: reset store file or not
+    *   - filePath: Path to store file
+    *   - reset: Reset store file or not
     */
    public static func initiate(filePath: String = tempFilePath, reset: Bool = false) throws -> Aggregator {
       if reset { try FileManager().removeItem(atPath: filePath) }
@@ -82,7 +84,7 @@ extension Aggregator {
 extension Aggregator {
    /**
     * Read Aggregator stats:
-    * - Fixme: ⚠️️ add exceptions-fatal: 4 (only errors) etc?
+    * - Fixme: ⚠️️ Add exceptions-fatal: 4 (only errors) etc?
     */
    public var stats: String {
       var output: String = ""

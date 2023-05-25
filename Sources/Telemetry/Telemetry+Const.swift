@@ -4,7 +4,7 @@ import Foundation
  */
 extension Telemetry {
    public typealias Complete = (_ success: Bool) -> Void
-   static let baseURL: URL? = .init(string: "https://www.google-analytics.com/")
+   internal static let baseURL: URL? = .init(string: "https://www.google-analytics.com/")
 }
 /**
  * variables
@@ -31,17 +31,17 @@ extension Telemetry {
    /**
     * Options are: .vendor, .userdef, .keychain
     * - Remark: Type of persistence
-    * - Fixme: ⚠️️ rename to currentIdentifierType? or curIdType?
+    * - Fixme: ⚠️️ Rename to currentIdentifierType? or curIdType?
     */
    public static var idType: IDType = .userdefault
    /**
-    * network, rename to urlSession
+    * Network, rename to urlSession
     */
    public static let session = URLSession.shared
    /**
     * Telemetry type
     * - Description: A way to switch from ga-endpoint to aggregator-endpoint
-    * - Fixme: ⚠️️ rename to endPointType?
+    * - Fixme: ⚠️️ Rename to endPointType? EPType ? Maybe
     */
    public static var tmType: TMType = .ga // .agg()
 }

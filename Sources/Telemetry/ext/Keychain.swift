@@ -1,20 +1,25 @@
 import Foundation
 /**
- * - Note: from here: https://stackoverflow.com/a/51642962/5389500
+ * A simple getter and setter wrapper for keychain
+ * - Note: From here: https://stackoverflow.com/a/51642962/5389500
+ * - Fixme: ⚠️️ Add examples
  */
-class Keychain {
+internal class Keychain {
    /**
     * Set value for key in keychain
+    * - Parameters:
+    *   - key: - Fixme: ⚠️️ add doc
+    *   - value: - Fixme: ⚠️️ add doc
     */
-   static func set(key: String, value: String) throws {
+   internal static func set(key: String, value: String) throws {
       guard let valueData = value.data(using: .utf8) else {
-         print("Keychain: Unable to store data, invalid input - key: \(key), value: \(value)")
+         Swift.print("Keychain: Unable to store data, invalid input - key: \(key), value: \(value)")
          return
       }
       do { // Delete old value if stored first
          try delete(itemKey: key)
       } catch {
-         print("Keychain: nothing to delete...")
+         Swift.print("Keychain: nothing to delete...")
       }
       let queryAdd: [String: AnyObject] = [
          kSecClass as String: kSecClassGenericPassword,
@@ -32,7 +37,7 @@ class Keychain {
    /**
     * Get value from keychain
     */
-   static func get(key: String) throws -> String? {
+   internal static func get(key: String) throws -> String? {
       let queryLoad: [String: AnyObject] = [
          kSecClass as String: kSecClassGenericPassword,
          kSecAttrAccount as String: key as AnyObject,
