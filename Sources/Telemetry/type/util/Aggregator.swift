@@ -48,6 +48,7 @@ extension Aggregator {
 extension Aggregator {
    /**
     * - Remark: If the app is sandboxed, this folder is somewhere else. Print the path in your app to get absolute path etc
+    * - Remark: Something like this path should also work: `NSTemporaryDirectory()).appendingPathComponent("store.json").path`
     */
    public static let tempFilePath: String = "\(NSHomeDirectory())/store.json" // or use tempfolder etc
    /**
