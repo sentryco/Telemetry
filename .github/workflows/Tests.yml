@@ -6,12 +6,13 @@ on:
   pull_request:
     branches: [ main ]
 jobs:
-  SwiftLint: ## Adds swift-linting to GH actions
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: GitHub Action for SwiftLint
-        uses: norio-nomura/action-swiftlint@3.2.1
+  ## Swiftlint is out of order at the moment. Seems to work locally but not remotly, uses the wrong lint file etc
+  ## SwiftLint: ## Adds swift-linting to GH actions
+    ## runs-on: ubuntu-latest
+    ## steps:
+      ## - uses: actions/checkout@v3
+      ## - name: GitHub Action for SwiftLint
+      ##   uses: norio-nomura/action-swiftlint@3.2.1
   build:
     runs-on: macos-latest
     steps:
