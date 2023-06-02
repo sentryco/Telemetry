@@ -5,9 +5,9 @@ final class TelemetryTests: XCTestCase {
    func testExample() throws {
        Self.systemTest()
        Self.testIdentity()
-//       Self.basicTest(testCase: self) // only works if real tracker id is used
-//       Self.aggTest()
-//      Self.readAggStatsTest() // used to debuging telemtry aggregator log in terminal
+      // Self.basicTest(testCase: self) // only works if real tracker id is used
+      // Self.aggTest()
+      // Self.readAggStatsTest() // used to debuging telemtry aggregator log in terminal
    }
 }
 extension TelemetryTests {
