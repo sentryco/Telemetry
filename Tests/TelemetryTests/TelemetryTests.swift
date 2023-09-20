@@ -22,12 +22,22 @@ extension TelemetryTests {
     * This function tests the system functionalities by printing various system properties
     */
    fileprivate static func systemTest() {
-      // Print various system properties
+           // Print the build number of the application
       Swift.print("System.appBuild: \(System.appBuild)") // Example output: 20501
+      
+      // Print the unique identifier of the application
       Swift.print("System.appIdentifier: \(System.appIdentifier)") // Example output: com.apple.dt.xctest.tool
+      
+      // Print the name of the application
       Swift.print("System.appName: \(System.appName)") // Example output: xctest
+      
+      // Print the screen resolution of the device
       Swift.print("System.screenResolution: \(System.screenResolution)") // Example output: 1440.0x900.0
+      
+      // Print the language setting of the user's device
       Swift.print("System.userLanguage: \(System.userLanguage)") // Example output: en-US etc
+      
+      // Print the user agent string of the device
       Swift.print("System.userAgent: \(System.userAgent)") // Example output: Mozilla/5.0...
    }
 
@@ -36,17 +46,24 @@ extension TelemetryTests {
     */
    fileprivate static func testIdentity() {
       // Define a test function that generates and compares unique user identifiers
+            // Define a test function that takes an IDType as input
       let test: (_ type: IDType) -> Void = { type in
-         let id = Identity.uniqueUserIdentifier(type: type) // generates new
+         // Generate a new unique user identifier based on the given IDType
+         let id = Identity.uniqueUserIdentifier(type: type)
+         // Print the generated identifier
          Swift.print("id: \(id)")
-         let id2 = Identity.uniqueUserIdentifier(type: type) // gets it from persistent layer
+         // Retrieve the identifier from the persistent layer
+         let id2 = Identity.uniqueUserIdentifier(type: type)
+         // Check if the generated identifier and the retrieved identifier are the same
          let isTheSame = id == id2
+         // Print the result of the comparison
          Swift.print("\(String(describing: type)) isTheSame: \(isTheSame ? "✅" : "🚫")")
+         // Assert that the identifiers are the same for the test to pass
          XCTAssertTrue(isTheSame)
       }
-      // Test userdefault
+      // Run the test function with userdefault as the IDType
       test(.userdefault)
-      // Test keychain
+      // Run the test function with keychain as the IDType
       test(.keychain)
    }
 
