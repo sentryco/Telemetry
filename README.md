@@ -7,30 +7,35 @@
 
 # 🔬 Telemetry
 
-> Telemetry is an open SDK for google analytics. Because closed source sdks are terrible for security
+> Telemetry is an open-source SDK for Google Analytics. We believe in transparency and security, hence the open-source approach.
 
-### Reasoning
-- 🤖 GA is a great way to gather real engagement data and measure traction. In order to improve it.
-- 🐛 GA is great for error and crash reporting. Get ahead of UX issues by getting notified if there are bugs
-- 🌍 GA is great for measuring which markets that are using your app.
+
+## Installation
+You can install Telemetry via Swift Package Manager (SPM) using the following URL: `https://github.com/sentryco/Telemetry`.
+
+### Why Use Telemetry?
+- 🤖 Google Analytics (GA) provides valuable insights into user engagement and traction. Telemetry helps you leverage these insights to improve your application.
+- 🐛 GA is an excellent tool for error and crash reporting. Stay ahead of UX issues by receiving notifications about bugs.
+- 🌍 GA helps you understand the geographical distribution of your app's users.
 
 > **Warning**  
-> Currenly using GA3 API which is sunset in July. This lib will migrate to GA4 before that
+> We currently use the GA3 API, which will be deprecated in July. We plan to migrate to GA4 before then.
 
-### Events
-With the Telemetry's event() method, you can monitor any event you want.
+### Event Tracking
+With Telemetry's `event()` method, you can monitor any event of interest.
 ```swift
 Telemetry.event("Authorize", action: "Access granted")
 ```
 
 ### Screenviews
-You should frequently keep track of the "screens" the user navigates to. Your ViewController's viewDidAppear is a logical place to do that. The Telemetry's screenView() method can be used; it performs the same function as event().
+It's important to track the "screens" that users navigate to. A logical place to do this is in your ViewController's `viewDidAppear` method. Use Telemetry's `screenView()` method for this purpose.
 ```swift
 Telemetry.screenView("Cheers")
 ```
 
 ### Sessions
-By calling session(start: true) when the user opens the application and session(start: false) when they close it, you can keep track of each user's individual sessions. You can do this in your UIApplicationDelegate application by following the example given here:.
+By calling `session(start: true)` when the application opens and `session(start: false)` when it closes, you can track individual user sessions. Here's an example of how to do this in your `UIApplicationDelegate` application:
+
 
 ```swift
 Telemetry.trackerID = "UA-XXXXX-XX")
@@ -39,30 +44,44 @@ Telemetry.session(start: false) // applicationDidEnterBackground
 ```
 
 ### Exception
-Use exception to report warnings and errors
+Use the `exception` method to report warnings and errors.
 ```swift
 Telemetry.exception("Error - database not available", isFatal: false)
 ```
 
 ### Timing
+This example tracks the time to fetch user data from a database. The 'category' parameter denotes the operation type ("Database"). The 'variable' parameter specifies the operation ("Fetch"). The 'time' parameter records elapsed time in milliseconds. The optional 'label' parameter can provide additional details.
+
 ```swift
-// Add example for this later
+// Start the timer
+let startTime = Date()
+
+// Perform some operation
+// ...
+
+// Calculate the elapsed time
+let elapsedTime = Date().timeIntervalSince(startTime)
+
+// Log the timing event
+Telemetry.timing(category: "Database", variable: "Fetch", time: elapsedTime, label: "User data fetch")
 ```
 
 ### Gotchas:
-- Telemetry will automatically request that Google Analytics anonymize user IPs in order to comply with GDPR.
-The token can be obtained from the admin page of the tracked Google Analytics entity.
-- Firebase crashlytics is the way to go now days. Its also free to use etc. But can be over the top complex. You have to use their SDK etc. Sometimes simple is better etc.
-- When setting up google analytics account. Make sure to use legacy `Universal Analytics property` and not GA4. This legacy option is under advance menu when you setup the account
-- Why are closed source sdks bad? From apples app-review guidelines: `Ensure that all software frameworks and dependencies also adhere to the App Store Review Guidelines`
+- Telemetry automatically requests Google Analytics to anonymize user IPs to comply with GDPR.
+- Obtain the token from the admin page of the tracked Google Analytics entity.
+- While Firebase Crashlytics is a popular choice, it can be complex due to the need to use their SDK. Sometimes, simplicity is key.
+- When setting up your Google Analytics account, ensure to use the legacy `Universal Analytics property` and not GA4. This legacy option is under the advanced menu during account setup.
+- Why are closed-source SDKs a concern? According to Apple's app-review guidelines: `Ensure that all software frameworks and dependencies also adhere to the App Store Review Guidelines`.
+
 
 ### Resources:
 - Anonymous GA: https://stackoverflow.com/questions/50392242/how-anonymize-google-analytics-for-ios-for-gdpr-rgpd-purpose
 - Guide on fingerprinting in iOS: https://nshipster.com/device-identifiers/
 - Guide on identifiers: https://gist.github.com/hujunfeng/6265995
-- Nice tracker project: https://github.com/kafejo/Tracker-Aggregator
-- Another nice tracker project: https://github.com/devxoul/Umbrella
+- Noteworthy tracker project: https://github.com/kafejo/Tracker-Aggregator
+- Another noteworthy tracker project: https://github.com/devxoul/Umbrella
 - Using Google Analytics for Tracking SaaS: https://reflectivedata.com/using-google-analytics-for-tracking-saas/
+
 
 ### Todo:
 - Add documentation to this readme on how to setup Google analytics for your google account etc 🚧

@@ -1,32 +1,38 @@
 import Foundation
+
 /**
- * A simple getter and setter wrapper for keychain
- * - Note: From here: https://stackoverflow.com/a/51642962/5389500
- * - Fixme: ⚠️️ Add examples
+ * A class that provides a simple getter and setter wrapper for keychain.
+ * This class is used to securely store and retrieve data from the keychain.
+ * - Note: This code is adapted from: https://stackoverflow.com/a/51642962/5389500
  */
 internal class Keychain {
    /**
-    * Set value for key in keychain
+    * Set value for key in keychain.
+    * This function is used to store a string value in the keychain associated with a given key.
     * - Parameters:
-    *   - key: - Fixme: ⚠️️ add doc
-    *   - value: - Fixme: ⚠️️ add doc
+    *   - key: The key with which the value is associated in the keychain.
+    *   - value: The string value to be stored in the keychain.
     */
    internal static func set(key: String, value: String) throws {
+      // Convert the string value to data
       guard let valueData = value.data(using: .utf8) else {
          Swift.print("Keychain: Unable to store data, invalid input - key: \(key), value: \(value)")
          return
       }
-      do { // Delete old value if stored first
+      // Try to delete any existing value associated with the key
+      do {
          try delete(itemKey: key)
       } catch {
          Swift.print("Keychain: nothing to delete...")
       }
+      // Define the query for adding the item to the keychain
       let queryAdd: [String: AnyObject] = [
-         kSecClass as String: kSecClassGenericPassword,
-         kSecAttrAccount as String: key as AnyObject,
-         kSecValueData as String: valueData as AnyObject,
-         kSecAttrAccessible as String: kSecAttrAccessibleWhenUnlocked
+         kSecClass as String: kSecClassGenericPassword, // Define the class of the item that this query will add
+         kSecAttrAccount as String: key as AnyObject, // Define the account attribute of the item
+         kSecValueData as String: valueData as AnyObject, // Define the data to be stored in the keychain
+         kSecAttrAccessible as String: kSecAttrAccessibleWhenUnlocked // Define when the item is accessible
       ]
+      // Add the item to the keychain
       let resultCode: OSStatus = SecItemAdd(queryAdd as CFDictionary, nil)
       if resultCode != 0 {
          print("Keychain: value not added - Error: \(resultCode)")
@@ -35,16 +41,21 @@ internal class Keychain {
       }
    }
    /**
-    * Get value from keychain
+    * Get value from keychain.
+    * This function is used to retrieve a string value from the keychain associated with a given key.
+    * - Parameter key: The key with which the value is associated in the keychain.
+    * - Returns: The string value associated with the key, or nil if no value is found.
     */
    internal static func get(key: String) throws -> String? {
+      // Define the query for loading the item from the keychain
       let queryLoad: [String: AnyObject] = [
-         kSecClass as String: kSecClassGenericPassword,
-         kSecAttrAccount as String: key as AnyObject,
-         kSecReturnData as String: kCFBooleanTrue,
-         kSecMatchLimit as String: kSecMatchLimitOne
+         kSecClass as String: kSecClassGenericPassword, // Define the class of the item that this query will load
+         kSecAttrAccount as String: key as AnyObject, // Define the account attribute of the item
+         kSecReturnData as String: kCFBooleanTrue, // Define that the data of the item should be returned
+         kSecMatchLimit as String: kSecMatchLimitOne // Define that only one item should be returned
       ]
       var result: AnyObject?
+      // Load the item from the keychain
       let resultCodeLoad = withUnsafeMutablePointer(to: &result) {
          SecItemCopyMatching(queryLoad as CFDictionary, UnsafeMutablePointer($0))
       }
@@ -52,6 +63,7 @@ internal class Keychain {
          print("Keychain: unable to load data - \(resultCodeLoad)")
          return nil
       }
+      // Convert the data to a string
       guard let resultVal = result as? NSData, let keyValue = NSString(data: resultVal as Data, encoding: String.Encoding.utf8.rawValue) as String? else {
          print("Keychain: error parsing keychain result - \(resultCodeLoad)")
          return nil
@@ -59,18 +71,23 @@ internal class Keychain {
       return keyValue
    }
 }
+
 /**
- * Private helper
+ * An extension of the Keychain class that provides a helper function for deleting items from the keychain.
  */
 extension Keychain {
    /**
-    * Delete
+    * Delete an item from the keychain.
+    * This function is used to delete the value associated with a given key from the keychain.
+    * - Parameter itemKey: The key of the item to be deleted from the keychain.
     */
    fileprivate static func delete(itemKey: String) throws {
+      // Define the query for deleting the item from the keychain
       let queryDelete: [String: AnyObject] = [
-         kSecClass as String: kSecClassGenericPassword,
-         kSecAttrAccount as String: itemKey as AnyObject
+         kSecClass as String: kSecClassGenericPassword, // Define the class of the item that this query will delete
+         kSecAttrAccount as String: itemKey as AnyObject // Define the account attribute of the item to be deleted
       ]
+      // Delete the item from the keychain
       let resultCodeDelete = SecItemDelete(queryDelete as CFDictionary)
       if resultCodeDelete != 0 {
          print("Keychain: unable to delete from keychain: \(resultCodeDelete)")
