@@ -1,20 +1,29 @@
 import Foundation
+
 /**
- * Event
+ * `Event` is a struct that represents a telemetry event.
+ * It conforms to the `ActionKind` protocol.
  */
 public struct Event: ActionKind {
+   // The category of the event
    public let category: String
+   
+   // The action of the event
    public let action: String
+   
+   // The label of the event
    public let label: String
+   
+   // A dictionary of additional parameters for the event
    public let params: [String: String]
+   
    /**
-    * Tracks an event to Google Analytics
-    * - Remark: Generic events are reported using `event(_:action:label:parameters:)`
+    * Initializes an `Event` instance.
     * - Parameters:
     *   - category: The category of the event (ec)
     *   - action: The action of the event (ea)
-    *   - label: The label of the event (el)
-    *   - params: A dictionary of additional parameters for the event
+    *   - label: The label of the event (el). Default is an empty string.
+    *   - params: A dictionary of additional parameters for the event. Default is an empty dictionary.
     */
    public init(category: String, action: String, label: String = "", params: [String: String] = .init()) {
       self.category = category
@@ -23,16 +32,23 @@ public struct Event: ActionKind {
       self.params = params
    }
 }
+
 /**
- * Ext
+ * `Event` extension that provides additional functionality.
  */
 extension Event {
+   // A key that represents the event
    public var key: String { "event" }
+   
+   /**
+    * An output dictionary that includes the event's category, action, label, and additional parameters.
+    * - Returns: A dictionary that represents the event.
+    */
    public var output: [String: String] {
-      var params: [String: String] = self.params
-      params["ec"] = category
-      params["ea"] = action
-      params["el"] = label
-      return params
+     var params: [String: String] = self.params  // Copy the existing parameters
+      params["ec"] = category  // Set the event category
+      params["ea"] = action  // Set the event action
+      params["el"] = label  // Set the event label
+      return params  // Return the updated parameters
    }
 }

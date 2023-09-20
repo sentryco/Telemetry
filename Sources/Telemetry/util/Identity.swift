@@ -4,21 +4,27 @@ import UIKit
 #elseif os(macOS)
 import Cocoa
 #endif
+
 /**
+ * Identity class for handling unique identifiers.
+* - Fixme: ⚠️️ Rename to id? or keep Identity?
  * - Remark: IFA/IDFA -> Identifier for Advertisers
- * - Remark: IFV/IDFV -> (Identifier for Vendor)
- * - Remark: IDFA is shared between all apps of the system, but can only be used by ad-enabled apps that are really showing the ads to the end user. Also, the user can opt-out and choose to reset it or disable the “across system” UID, causing a new UID to be generated for each install.
+ * - Remark: IFV/IDFV -> Identifier for Vendor
+ * - Remark: IDFA is shared across all apps on the system, but only usable by ad-enabled apps that display ads to the user. Users can opt-out, reset, or disable the “across system” UID, causing a new UID to be generated for each install.
  * - Remark: IDFV is shared between apps from the same publisher, but is lost when the last app of the publisher is uninstalled.
- * - Note: complete solution in objc: https://gist.github.com/miguelcma/e8f291e54b025815ca46
- * - Note: objc: https://github.com/guojunliu/XYUUID and https://github.com/mushank/ZKUDID
- * - Note: Objc: https://stackoverflow.com/a/20339893/5389500 and https://developer.apple.com/forums/thread/127567
- * - Fixme: ⚠️️ Rename to id? or keep Identity?
+ * - Note: For a complete solution in Objective-C, refer to the following links:
+ *   - https://gist.github.com/miguelcma/e8f291e54b025815ca46
+ *   - https://github.com/guojunliu/XYUUID
+ *   - https://github.com/mushank/ZKUDID
+ *   - https://stackoverflow.com/a/20339893/5389500
+ *   - https://developer.apple.com/forums/thread/127567
  */
 class Identity {}
 
 extension Identity {
    /**
-    * - Parameter type: type of id (vendor, userDef or keychain)
+    * Generates a unique user identifier.
+    * - Parameter type: Type of identifier (vendor, userDef or keychain)
     */
    internal static func uniqueUserIdentifier(type: IDType) -> String {
       let id: String? = {
@@ -31,35 +37,46 @@ extension Identity {
       return id ?? UUID().uuidString
    }
 }
+
 /**
- * UIDevice id
+ * Extension for handling UIDevice id.
  */
 extension Identity {
    /**
-    * Source of identifer to persist
+    * Vendor identifier source.
     * - Remark: Changes on every simulator run etc (allegedly) - Fixme: ⚠️️ confirm this
-    * - Remark: Should persist between release app runs, but beta apps might genereate new uuid
+    * - Remark: Should persist between release app runs, but beta apps might generate new UUID.
     * - Remark: The MAC doesn't have anything equivalent to iOS's identifierForVendor or advertising Id alas.
     */
    fileprivate static var vendorID: String? {
       #if os(iOS)
-      return UIDevice.current.identifierForVendor?.uuidString // UIDevice.current.identifierForVendor
+      // For iOS, we return the identifier for vendor
+      return UIDevice.current.identifierForVendor?.uuidString 
       #elseif os(macOS)
+      // For macOS, we need to use IOServiceMatching to get the device
       let dev = IOServiceMatching("IOPlatformExpertDevice")
-      let platformExpert: io_service_t = IOServiceGetMatchingService(kIOMainPortDefault/* ⚠️️ was kIOMasterPortDefault*/, dev)
+      // Get the platform expert service
+      let platformExpert: io_service_t = IOServiceGetMatchingService(kIOMainPortDefault, dev)
+      // Create a property for the platform expert
       let serialNumberAsCFString = IORegistryEntryCreateCFProperty(platformExpert, kIOPlatformUUIDKey as CFString, kCFAllocatorDefault, 0)
+      // Release the platform expert object
       IOObjectRelease(platformExpert)
+      // Get the serial number as a CFTypeRef
       let ser: CFTypeRef = serialNumberAsCFString?.takeUnretainedValue() as CFTypeRef
+      // If we can cast the serial number to a String, return it
       if let result = ser as? String { return result }
+      // If we can't cast the serial number to a String, return nil
       return nil
       #else
+      // If the OS is not iOS or macOS, print an error message and return nil
       Swift.print("OS not supported")
       return nil
       #endif
    }
 }
+
 /**
- * UserDefault - (Semi peristentID)
+ * Extension for handling UserDefault - (Semi persistentID).
  */
 extension Identity {
    /**
@@ -68,7 +85,7 @@ extension Identity {
     * - Remark: This way, a UUID will be generated once when the app is launched for the first time, and then stored in NSUserDefaults to be retrieved on each subsequent app launch.
     * - Remark: Unlike advertising or vendor identifiers, these identifiers would not be shared across other apps, but for most intents and purposes, this is works just fine.
     * - Remark: Does not persist app reinstalls
-    * - Remark: Persist between consol-unit-test runs
+    * - Remark: Persist between console-unit-test runs
     */
    fileprivate static var userDefaultID: String? {
       let userDefaults = UserDefaults.standard
@@ -80,25 +97,27 @@ extension Identity {
       return userDefaults.value(forKey: "AppID") as? String
    }
 }
+
 /**
- * Keychain - (Persisten id)
+ * Extension for handling Keychain - (Persistent id).
  */
 extension Identity {
    /**
     * Creates a new unique user identifier or retrieves the last one created
     * - Description: The `PersistentID` class generates and stores a persistent ID that can be used to identify a device.
-    * - Remark: Does not persist OS reset/reinstal. But will persist os updates and os transfers to new phone,
+    * - Remark: Does not persist OS reset/reinstall. But will persist OS updates and transfers to new phone,
     * - Remark: As long as the bundle identifier remains the same this will persist
     * - Remark: And no, the key will not be synchronized to iCloud by default
-    * - Remark: keychain works with consol-unit-tests
-    * - Note: Back story on keychain not persisting between app installs for ios beta 10.3: https://stackoverflow.com/questions/41016762/how-to-generate-unique-id-of-device-for-iphone-ipad-using-objective-c/41017285#41017285
-    * - Note: https://github.com/fabiocaccamo/FCUUID
-    * - Note: gd article: https://medium.com/@miguelcma/persistent-cross-install-device-identifier-on-ios-using-keychain-ac9e4f84870f
-    * - Note: Keychain example (uses 3rd party) https://stackoverflow.com/a/38745743/5389500
-    * - Note: Allegedly keychain can be lost if the provisioning profile is changed: https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/MaintainingCertificates/MaintainingCertificates.html
+    * - Remark: Keychain works with console-unit-tests
+    * - Note: For more information, refer to the following links:
+    *   - https://stackoverflow.com/questions/41016762/how-to-generate-unique-id-of-device-for-iphone-ipad-using-objective-c/41017285#41017285
+    *   - https://github.com/fabiocaccamo/FCUUID
+    *   - https://medium.com/@miguelcma/persistent-cross-install-device-identifier-on-ios-using-keychain-ac9e4f84870f
+    *   - https://stackoverflow.com/a/38745743/5389500
+    *   - https://developer.apple.com/library/ios/documentation/IDEs/Conceptual/AppDistributionGuide/MaintainingCertificates/MaintainingCertificates.html
     */
    fileprivate static var keychainID: String? {
-      let uuidKey = "persistentAppID" // This is the key we'll use to store the uuid in the keychain
+     let uuidKey = "persistentAppID" // This is the key we'll use to store the uuid in the keychain
       if let id = try? Keychain.get(key: uuidKey) { // Check if we already have a uuid stored, if so return it
          return id
       }
@@ -108,7 +127,7 @@ extension Identity {
    }
 }
 /**
- * Peristence level
+ * Enum for persistence level.
  */
 public enum IDType {
    case vendor // Does not work on macOS, or does it now? - Fixme: ⚠️️ confirm this
