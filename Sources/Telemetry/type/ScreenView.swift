@@ -9,10 +9,8 @@ import Foundation
 public struct ScreenView: ActionKind {
    // The name of the screen.
    public let name: String
-   
    // A dictionary of parameters associated with the screen view event.
    public let params: [String: String]
-   
    /**
     * This method tracks a screen view event as a page view to Google Analytics by setting the required parameters.
     * - Remark: Screen (page) views are reported using `screenView(_:parameters:)` with the name of the screen.
@@ -27,14 +25,12 @@ public struct ScreenView: ActionKind {
       self.params = params
    }
 }
-
 /**
  * `ScreenView` extension that provides additional functionality.
  */
 extension ScreenView {
    // The key used to identify a page view event.
    public var key: String { "pageview" }
-   
    /**
     * This computed property generates the output dictionary for the screen view event.
     * It includes the app identifier, screen name, and document title.

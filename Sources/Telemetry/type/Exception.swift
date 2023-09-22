@@ -5,15 +5,9 @@ import Foundation
  * It conforms to the `ActionKind` protocol.
  */
 public struct Exception: ActionKind {
-   // A string that describes the exception.
-   public let description: String
-   
-   // A boolean that indicates if the exception was fatal to the execution of the program.
-   public let isFatal: Bool
-   
-   // A dictionary of additional parameters for the event.
-   public let params: [String: String]
-   
+   public let description: String // A string that describes the exception.
+   public let isFatal: Bool // A boolean that indicates if the exception was fatal to the execution of the program.
+   public let params: [String: String] // A dictionary of additional parameters for the event.
    /**
     * Initializes an instance of `Exception`.
     * - Parameters:
@@ -27,19 +21,17 @@ public struct Exception: ActionKind {
       self.params = params
    }
 }
-
 extension Exception {
    // A string that represents the key of the exception.
    public var key: String { "exception" }
-   
    /**
     * A dictionary that represents the output of the exception.
     * It includes the description and the fatality of the exception, along with any additional parameters.
     */
    public var output: [String: String] {
-      var params: [String: String] = self.params
-      params["exd"] = description
-      params["exf"] = String(isFatal)
-      return params
+      var params: [String: String] = self.params // Initializes a new dictionary of parameters with the existing parameters
+      params["exd"] = description // Adds the exception description to the parameters dictionary
+      params["exf"] = String(isFatal) // Adds a boolean indicating if the exception was fatal to the parameters dictionary
+      return params // Returns the updated parameters dictionary
    }
 }

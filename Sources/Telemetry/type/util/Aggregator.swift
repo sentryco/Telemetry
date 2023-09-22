@@ -1,7 +1,6 @@
 import Foundation
 import FileSugar
 import JSONSugar
-
 /**
  * Local aggregator
  * - Remark: This can be used to save logs etc.
@@ -13,19 +12,12 @@ import JSONSugar
  * - Fixme: ⚠️️ Rename to TMAggregator?
  */
 public class Aggregator: Codable {
-   // File path where the data will be stored
-   public var filePath: String
-   // Array of events
-   public var events: [Event]
-   // Array of sessions
-   public var sessions: [Session]
-   // Array of exceptions
-   public var exceptions: [Exception]
-   // Array of screen views
-   public var screenViews: [ScreenView]
-   // Array of timings
-   public var timings: [Timing]
-   
+   public var filePath: String // File path where the data will be stored
+   public var events: [Event] // Array of events
+   public var sessions: [Session] // Array of sessions
+   public var exceptions: [Exception] // Array of exceptions
+   public var screenViews: [ScreenView] // Array of screen views
+   public var timings: [Timing] // Array of timings
    // Initializer for the Aggregator class
    init(filePath: String = tempFilePath, events: [Event] = [], sessions: [Session] = [], exceptions: [Exception] = [], screenViews: [ScreenView] = [], timings: [Timing] = []) {
       self.filePath = filePath
@@ -36,7 +28,6 @@ public class Aggregator: Codable {
       self.timings = timings
    }
 }
-
 // Extension for the Aggregator class to add actions
 extension Aggregator {
    /**
@@ -57,7 +48,6 @@ extension Aggregator {
       try persist()
    }
 }
-
 // Extension for the Aggregator class to handle persistence
 extension Aggregator {
    /**
@@ -65,7 +55,6 @@ extension Aggregator {
     * - Remark: Something like this path should also work: `NSTemporaryDirectory()).appendingPathComponent("store.json").path`
     */
    public static let tempFilePath: String = "\(NSHomeDirectory())/store.json" // or use tempfolder etc
-   
    /**
     * Save current state to a file
     * - Fixme: ⚠️️ Add sqlite later, or coredata

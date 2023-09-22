@@ -36,7 +36,6 @@ public struct Session: ActionKind {
 extension Session {
    // The key for the session.
    public var key: String { "session" }
-
    // The output of the session. It includes the original parameters and adds two more: "sc" and "dp".
    public var output: [String: String] {
       var params: [String: String] = self.params

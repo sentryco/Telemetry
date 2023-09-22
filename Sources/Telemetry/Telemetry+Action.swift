@@ -39,26 +39,20 @@ extension Telemetry {
    internal static func send(type: String?, parameters: [String: String], complete: Complete? = nil) {
       // Initialize query arguments with metadata
       var queryArgs = Self.queryArgs 
-
       // If type is not nil and not empty, add it to the query arguments
       if let type: String = type, !type.isEmpty {
          queryArgs.updateValue(type, forKey: "t")
       }
-
       // If custom dimensions are not nil, merge them into the query arguments
       if let customDim: [String: String] = self.customDimArgs {
          queryArgs.merge(customDim) { _, new in new }
       }
-
       // Update the "aip" key in the query arguments based on the anonymizeIP flag
       queryArgs["aip"] = anonymizeIP ? "1" : nil
-
       // Combine the query arguments with the parameters
       let arguments: [String: String] = queryArgs.combinedWith(parameters)
-
       // Generate a URL with the arguments, return if URL generation fails
       guard let url: URL = Self.getURL(with: arguments) else { return }
-
       // Create a data task with the URL
       let task = session.dataTask(with: url) { _, _, error in
          // If there is an error, print it and call the completion handler with false
@@ -66,11 +60,9 @@ extension Telemetry {
             Swift.print("⚠️️ Failed to deliver GA Request. ", errorResponse)
             complete?(false)
          }
-
          // If there is no error, call the completion handler with true
          complete?(true)
       }
-
       // Start the data task
       task.resume()
    }

@@ -9,10 +9,10 @@ extension Dictionary {
     * - Returns: A new dictionary that contains the combined key-value pairs.
     */
    func combinedWith(_ other: [Key: Value]) -> [Key: Value] {
-      var dict = self
-      for (key, value) in other {
-         dict[key] = value
+      var dict = self // Initializes a new dictionary with the current dictionary
+      for (key, value) in other { // Loops through the key-value pairs in the other dictionary
+         dict[key] = value // Adds the key-value pair to the new dictionary
       }
-      return dict
+      return dict // Returns the updated dictionary
    }
 }

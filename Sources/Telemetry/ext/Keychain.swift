@@ -1,5 +1,4 @@
 import Foundation
-
 /**
  * A class that provides a simple getter and setter wrapper for keychain.
  * This class is used to securely store and retrieve data from the keychain.
@@ -21,9 +20,9 @@ internal class Keychain {
       }
       // Try to delete any existing value associated with the key
       do {
-         try delete(itemKey: key)
+         try delete(itemKey: key) // Tries to delete the keychain item with the specified key
       } catch {
-         Swift.print("Keychain: nothing to delete...")
+         Swift.print("Keychain: nothing to delete...") // Prints an error message if the keychain item cannot be deleted
       }
       // Define the query for adding the item to the keychain
       let queryAdd: [String: AnyObject] = [
@@ -59,9 +58,9 @@ internal class Keychain {
       let resultCodeLoad = withUnsafeMutablePointer(to: &result) {
          SecItemCopyMatching(queryLoad as CFDictionary, UnsafeMutablePointer($0))
       }
-      if resultCodeLoad != 0 {
-         print("Keychain: unable to load data - \(resultCodeLoad)")
-         return nil
+      if resultCodeLoad != 0 { // Checks if the result code for loading the keychain data is not 0
+         print("Keychain: unable to load data - \(resultCodeLoad)") // Prints an error message with the result code if the keychain data cannot be loaded
+         return nil // Returns nil if the keychain data cannot be loaded
       }
       // Convert the data to a string
       guard let resultVal = result as? NSData, let keyValue = NSString(data: resultVal as Data, encoding: String.Encoding.utf8.rawValue) as String? else {
@@ -71,7 +70,6 @@ internal class Keychain {
       return keyValue
    }
 }
-
 /**
  * An extension of the Keychain class that provides a helper function for deleting items from the keychain.
  */
@@ -89,10 +87,10 @@ extension Keychain {
       ]
       // Delete the item from the keychain
       let resultCodeDelete = SecItemDelete(queryDelete as CFDictionary)
-      if resultCodeDelete != 0 {
-         print("Keychain: unable to delete from keychain: \(resultCodeDelete)")
+      if resultCodeDelete != 0 { // Checks if the result code for deleting the keychain item is not 0
+         print("Keychain: unable to delete from keychain: \(resultCodeDelete)") // Prints an error message with the result code if the keychain item cannot be deleted
       } else {
-         print("Keychain: successfully deleted item")
+         print("Keychain: successfully deleted item") // Prints a success message if the keychain item is deleted successfully
       }
    }
 }

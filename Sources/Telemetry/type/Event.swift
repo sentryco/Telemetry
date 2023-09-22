@@ -5,18 +5,10 @@ import Foundation
  * It conforms to the `ActionKind` protocol.
  */
 public struct Event: ActionKind {
-   // The category of the event
-   public let category: String
-   
-   // The action of the event
-   public let action: String
-   
-   // The label of the event
-   public let label: String
-   
-   // A dictionary of additional parameters for the event
-   public let params: [String: String]
-   
+   public let category: String // The category of the event
+   public let action: String // The action of the event
+   public let label: String // The label of the event
+   public let params: [String: String] // A dictionary of additional parameters for the event
    /**
     * Initializes an `Event` instance.
     * - Parameters:
@@ -32,14 +24,12 @@ public struct Event: ActionKind {
       self.params = params
    }
 }
-
 /**
  * `Event` extension that provides additional functionality.
  */
 extension Event {
    // A key that represents the event
    public var key: String { "event" }
-   
    /**
     * An output dictionary that includes the event's category, action, label, and additional parameters.
     * - Returns: A dictionary that represents the event.

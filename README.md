@@ -11,7 +11,13 @@
 
 
 ## Installation
-You can install Telemetry via Swift Package Manager (SPM) using the following URL: `https://github.com/sentryco/Telemetry`.
+You can add Telemetry to your `Package.swift` file:
+
+```swift
+dependencies: [
+    .package(url: "https://github.com/sentryco/Telemetry", from: "1.0.0")
+]
+```
 
 ### Why Use Telemetry?
 - 🤖 Google Analytics (GA) provides valuable insights into user engagement and traction. Telemetry helps you leverage these insights to improve your application.

@@ -4,10 +4,9 @@ import UIKit
 #elseif os(macOS)
 import Cocoa
 #endif
-
 /**
  * Identity class for handling unique identifiers.
-* - Fixme: ⚠️️ Rename to id? or keep Identity?
+ * - Fixme: ⚠️️ Rename to id? or keep Identity?
  * - Remark: IFA/IDFA -> Identifier for Advertisers
  * - Remark: IFV/IDFV -> Identifier for Vendor
  * - Remark: IDFA is shared across all apps on the system, but only usable by ad-enabled apps that display ads to the user. Users can opt-out, reset, or disable the “across system” UID, causing a new UID to be generated for each install.
@@ -37,7 +36,6 @@ extension Identity {
       return id ?? UUID().uuidString
    }
 }
-
 /**
  * Extension for handling UIDevice id.
  */
@@ -74,7 +72,6 @@ extension Identity {
       #endif
    }
 }
-
 /**
  * Extension for handling UserDefault - (Semi persistentID).
  */
@@ -88,16 +85,15 @@ extension Identity {
     * - Remark: Persist between console-unit-test runs
     */
    fileprivate static var userDefaultID: String? {
-      let userDefaults = UserDefaults.standard
-      if userDefaults.object(forKey: "AppID") == nil {
-         let id: String = Self.vendorID ?? UUID().uuidString
-         userDefaults.set(id, forKey: "AppID")
-         userDefaults.synchronize()
+      let userDefaults = UserDefaults.standard // Initializes a new UserDefaults object
+      if userDefaults.object(forKey: "AppID") == nil { // Checks if the "AppID" key is not set in UserDefaults
+         let id: String = Self.vendorID ?? UUID().uuidString // Generates a new UUID if vendorID is nil, otherwise uses the vendorID
+         userDefaults.set(id, forKey: "AppID") // Sets the "AppID" key in UserDefaults to the generated or vendor-provided ID
+         userDefaults.synchronize() // Synchronizes the UserDefaults changes to disk
       }
-      return userDefaults.value(forKey: "AppID") as? String
+      return userDefaults.value(forKey: "AppID") as? String // Returns the "AppID" value from UserDefaults as a String
    }
 }
-
 /**
  * Extension for handling Keychain - (Persistent id).
  */
@@ -130,7 +126,14 @@ extension Identity {
  * Enum for persistence level.
  */
 public enum IDType {
-   case vendor // Does not work on macOS, or does it now? - Fixme: ⚠️️ confirm this
-   case userdefault
-   case keychain
+   /**
+    * This enum defines the different types of storage that can be used to store the identity.
+    * - Note: The "vendor" option uses the vendor ID to store the identity, but it may not work on macOS.
+    * - Note: The "userdefault" option uses UserDefaults to store the identity.
+    * - Note: The "keychain" option uses the Keychain to store the identity.
+    * - Important: .vendor: Does not work on macOS, or does it now? - Fixme: ⚠️️ confirm this
+    */
+   case vendor // Uses the vendor ID to store the identity
+   case userdefault // Uses UserDefaults to store the identity
+   case keychain // Uses the Keychain to store the identity
 }

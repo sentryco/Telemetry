@@ -1,5 +1,4 @@
 import Foundation
-
 /**
  * `ActionKind` is a protocol that defines a common interface for action types in the telemetry system.
  * It is Codable, meaning instances of types conforming to this protocol can be encoded to or decoded from external representations like JSON.
@@ -14,7 +13,7 @@ import Foundation
  * - Consider removing `params` from JSON representations if they are not necessary.
  */
 public protocol ActionKind: Codable {
-   var params: [String: String] { get }
-   var output: [String: String] { get }
-   var key: String { get }
+   var params: [String: String] { get } // A dictionary of parameters for the action
+   var output: [String: String] { get } // A dictionary of output values for the action
+   var key: String { get } // A unique key for the action
 }

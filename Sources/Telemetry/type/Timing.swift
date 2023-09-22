@@ -1,26 +1,15 @@
 import Foundation
-
 /**
  * Timing
  * This struct represents a timing event that can be tracked in Google Analytics.
  * It includes properties for category, name, label, time, and additional parameters.
  */
 public struct Timing: ActionKind {
-   // The category of the timing event
-   public let category: String
-   
-   // The name of the timing event
-   public let name: String
-   
-   // The label for the timing event
-   public let label: String
-   
-   // The time duration of the timing event in seconds
-   public let time: TimeInterval
-   
-   // Additional parameters for the timing event
-   public let params: [String: String]
-
+   public let category: String // The category of the timing event
+   public let name: String // The name of the timing event
+   public let label: String // The label for the timing event
+   public let time: TimeInterval // The time duration of the timing event in seconds
+   public let params: [String: String] // Additional parameters for the timing event
    /**
     * Initializer for the Timing struct.
     * - Parameters:
@@ -38,7 +27,6 @@ public struct Timing: ActionKind {
       self.params = params
    }
 }
-
 /**
  * Extension of Timing struct.
  * This extension adds two computed properties: key and output.
@@ -46,24 +34,18 @@ public struct Timing: ActionKind {
 extension Timing {
    // A key for the timing event
    public var key: String { "timing" }
-   
    // The output dictionary that includes all properties of the timing event
    public var output: [String: String] {
       // Initialize a new variable `params` with the current instance's `params`
       var params: [String: String] = self.params
-
       // Set the `utc` key in `params` to the current instance's `category`
       params["utc"] = category
-
       // Set the `utv` key in `params` to the current instance's `name`
       params["utv"] = name
-
       // Set the `utl` key in `params` to the current instance's `label`
       params["utl"] = label
-
       // Set the `utt` key in `params` to the current instance's `time` converted to milliseconds
       params["utt"] = String(Int(time * 1000))
-
       // Return the updated `params`
       return params
    }

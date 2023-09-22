@@ -1,17 +1,12 @@
-
-
-
-
 import Foundation
 #if os(iOS)
 import UIKit
 #elseif os(macOS)
 import Cocoa
 #endif
-
 /**
  * System class provides access to various system-level properties.
- * TODO: Consider moving this to a Bundle extension for better organization.
+ * - Fixme: Consider moving this to a Bundle extension for better organization.
  */
 internal class System {
    /**
@@ -20,35 +15,30 @@ internal class System {
    internal static let appName: String = {
       Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String ?? "(not set)"
    }()
-   
    /**
     * Provides the unique identifier of the application as defined in the Bundle.
     */
    internal static let appIdentifier: String = {
       Bundle.main.object(forInfoDictionaryKey: "CFBundleIdentifier") as? String ?? "(not set)"
    }()
-
    /**
     * Provides the version of the application as defined in the Bundle.
     */
    internal static let appVersion: String = {
       Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "(not set)"
    }()
-   
    /**
     * Provides the build number of the application as defined in the Bundle.
     */
    internal static let appBuild: String = {
       Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String ?? "(not set)"
    }()
-   
    /**
     * Provides a formatted string containing both the version and build number of the application.
     */
    internal static let formattedVersion: String = {
       "\(appVersion) (\(appBuild))"
    }()
-   
    /**
     * Provides the preferred language of the user as defined in the system settings.
     * TODO: Consider handling different language formats (e.g., en-US, en-GB).
@@ -59,7 +49,6 @@ internal class System {
       }
       return locale
    }()
-   
    /**
     * Provides the screen resolution of the user's device.
     */
@@ -76,7 +65,6 @@ internal class System {
       // Return the screen resolution as a string in the format "width x height"
       return "\(size.width)x\(size.height)"
    }()
-   
    /**
     * Provides the user agent string for the current device and OS.
     * This is useful for identifying the device and OS in web requests.
