@@ -143,5 +143,4 @@ public enum IDType {
     * Uses the Keychain to store the identity
     */
    case keychain
-   case keychain
 }

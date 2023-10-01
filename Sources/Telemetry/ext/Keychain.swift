@@ -46,8 +46,7 @@ internal class Keychain {
     * - Returns: The string value associated with the key, or nil if no value is found.
     */
    internal static func get(key: String) throws -> String? {
-      // Define the query for loading the item from the keychain
-      let queryLoad: [String: AnyObject] = [
+      let queryLoad: [String: AnyObject] = [ // Define the query for loading the item from the keychain
          kSecClass as String: kSecClassGenericPassword, // Define the class of the item that this query will load
          kSecAttrAccount as String: key as AnyObject, // Define the account attribute of the item
          kSecReturnData as String: kCFBooleanTrue, // Define that the data of the item should be returned
