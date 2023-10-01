@@ -124,16 +124,24 @@ extension Identity {
 }
 /**
  * Enum for persistence level.
+ * - Description: This enum defines the different types of storage that can be used to store the identity.
+ * - Note: The "vendor" option uses the vendor ID to store the identity, but it may not work on macOS.
+ * - Note: The "userdefault" option uses UserDefaults to store the identity.
+ * - Note: The "keychain" option uses the Keychain to store the identity.
+ * - Important: .vendor: Does not work on macOS, or does it now? - Fixme: ⚠️️ confirm this
  */
 public enum IDType {
    /**
-    * This enum defines the different types of storage that can be used to store the identity.
-    * - Note: The "vendor" option uses the vendor ID to store the identity, but it may not work on macOS.
-    * - Note: The "userdefault" option uses UserDefaults to store the identity.
-    * - Note: The "keychain" option uses the Keychain to store the identity.
-    * - Important: .vendor: Does not work on macOS, or does it now? - Fixme: ⚠️️ confirm this
+    * Uses the vendor ID to store the identity
     */
-   case vendor // Uses the vendor ID to store the identity
-   case userdefault // Uses UserDefaults to store the identity
-   case keychain // Uses the Keychain to store the identity
+   case vendor
+   /**
+    * Uses UserDefaults to store the identity
+    */
+   case userdefault
+   /**
+    * Uses the Keychain to store the identity
+    */
+   case keychain
+   case keychain
 }

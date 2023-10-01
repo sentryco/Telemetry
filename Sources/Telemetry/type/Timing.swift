@@ -5,11 +5,26 @@ import Foundation
  * It includes properties for category, name, label, time, and additional parameters.
  */
 public struct Timing: ActionKind {
-   public let category: String // The category of the timing event
-   public let name: String // The name of the timing event
-   public let label: String // The label for the timing event
-   public let time: TimeInterval // The time duration of the timing event in seconds
-   public let params: [String: String] // Additional parameters for the timing event
+   /**
+    * The category of the timing event
+    */
+   public let category: String
+   /**
+    * The name of the timing event
+    */
+   public let name: String
+   /**
+    * The label for the timing event
+    */
+   public let label: String
+   /**
+    * The time duration of the timing event in seconds
+    */
+   public let time: TimeInterval
+   /**
+    * Additional parameters for the timing event
+    */
+   public let params: [String: String]
    /**
     * Initializer for the Timing struct.
     * - Parameters:
@@ -32,9 +47,13 @@ public struct Timing: ActionKind {
  * This extension adds two computed properties: key and output.
  */
 extension Timing {
-   // A key for the timing event
+   /**
+    * The key for the timing event.
+    */
    public var key: String { "timing" }
-   // The output dictionary that includes all properties of the timing event
+   /**
+    * The output dictionary that includes all properties of the timing event.
+    */
    public var output: [String: String] {
       // Initialize a new variable `params` with the current instance's `params`
       var params: [String: String] = self.params

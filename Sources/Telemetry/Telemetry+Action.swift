@@ -11,17 +11,18 @@ extension Telemetry {
     *   - complete: Use complete only for the GA type
     */
    public static func action(_ action: ActionKind, complete: Complete? = nil) {
-      // Check if the telemetry type is Google Analytics
-      if case TMType.ga = tmType {
-         // Send the action to Google Analytics
-         send(type: action.key, parameters: action.output, complete: complete)
-      } else if case TMType.agg(let agg) = tmType {
-         // If the telemetry type is not Google Analytics, append the action to the aggregator
+      if case TMType.ga = tmType { // Check if the telemetry type is Google Analytics
+         send(type: action.key, // Type of action being sent
+            parameters: action.output, // Parameters associated with the action
+            complete: complete // Completion handler to be called when the action is complete
+         ) // Send the action to Google Analytics
+      } else if case TMType.agg(let agg) = tmType { // If the telemetry type is not Google Analytics, 
          do { 
-               try agg.append(action: action) 
+               try agg.append(action: action) // append the action to the aggregator
          }
-         // Catch and print any errors that occur when appending the action
-         catch { Swift.print("Error: \(error.localizedDescription)") }
+         catch { // Catch and print any errors that occur when appending the action
+            Swift.print("Error: \(error.localizedDescription)") 
+         }
       }
    }
 }

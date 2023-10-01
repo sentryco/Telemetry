@@ -12,13 +12,22 @@ import JSONSugar
  * - Fixme: ⚠️️ Rename to TMAggregator?
  */
 public class Aggregator: Codable {
-   public var filePath: String // File path where the data will be stored
-   public var events: [Event] // Array of events
-   public var sessions: [Session] // Array of sessions
-   public var exceptions: [Exception] // Array of exceptions
-   public var screenViews: [ScreenView] // Array of screen views
-   public var timings: [Timing] // Array of timings
-   // Initializer for the Aggregator class
+   public var filePath: String
+   public var events: [Event]
+   public var sessions: [Session]
+   public var exceptions: [Exception]
+   public var screenViews: [ScreenView]
+   public var timings: [Timing]
+   /**
+    * Initializer for the Aggregator class
+    * - Parameters: 
+    *   - filePath: A string value representing the file path 
+    *   - events: An array of Event objects 
+    *   - sessions: An array of Session objects 
+    *   - exceptions: An array of Exception objects 
+    *   - screenViews: An array of ScreenView objects 
+    *   - timings: An array of Timing objects 
+    */
    init(filePath: String = tempFilePath, events: [Event] = [], sessions: [Session] = [], exceptions: [Exception] = [], screenViews: [ScreenView] = [], timings: [Timing] = []) {
       self.filePath = filePath
       self.events = events
@@ -31,8 +40,9 @@ public class Aggregator: Codable {
 // Extension for the Aggregator class to add actions
 extension Aggregator {
    /**
-    * Add action
-    * - Fixme: ⚠️️ Rename to send? or noterize or something?
+    * Add an action to the aggregator
+    * - Parameter action: The action to be added
+    * - Throws: An error if the action cannot be added
     */
    public func append(action: ActionKind) throws {
       // Depending on the type of action, append it to the corresponding array

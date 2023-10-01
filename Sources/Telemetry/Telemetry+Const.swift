@@ -3,10 +3,14 @@ import Foundation
  * Constants for Telemetry
  */
 extension Telemetry {
-   // Typealias for completion handler
+   /**
+    * Typealias for completion handler
+    Æ - Parameter success: A boolean value indicating whether the operation was successful or not
+    */
    public typealias Complete = (_ success: Bool) -> Void
-
-   // Base URL for Google Analytics
+   /**
+    * Base URL for Google Analytics
+    */
    internal static let baseURL: URL? = .init(string: "https://www.google-analytics.com/")
 }
 /**

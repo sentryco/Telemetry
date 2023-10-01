@@ -5,9 +5,18 @@ import Foundation
  * It conforms to the `ActionKind` protocol.
  */
 public struct Exception: ActionKind {
-   public let description: String // A string that describes the exception.
-   public let isFatal: Bool // A boolean that indicates if the exception was fatal to the execution of the program.
-   public let params: [String: String] // A dictionary of additional parameters for the event.
+   /**
+    * A string that describes the exception.
+    */
+   public let description: String
+   /**
+    * A boolean that indicates if the exception was fatal to the execution of the program.
+    */
+   public let isFatal: Bool
+   /**
+    * A dictionary of additional parameters for the event.
+    */
+   public let params: [String: String]
    /**
     * Initializes an instance of `Exception`.
     * - Parameters:

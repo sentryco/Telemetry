@@ -67,7 +67,7 @@ internal class System {
    }()
    /**
     * Provides the user agent string for the current device and OS.
-    * This is useful for identifying the device and OS in web requests.
+    * - Note: This is useful for identifying the device and OS in web requests.
     */
    internal static let userAgent: String = {
     // Check if the OS is macOS

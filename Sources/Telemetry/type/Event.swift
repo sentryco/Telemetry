@@ -1,14 +1,25 @@
 import Foundation
-
 /**
  * `Event` is a struct that represents a telemetry event.
  * It conforms to the `ActionKind` protocol.
  */
 public struct Event: ActionKind {
-   public let category: String // The category of the event
-   public let action: String // The action of the event
-   public let label: String // The label of the event
-   public let params: [String: String] // A dictionary of additional parameters for the event
+   /**
+    * The category of the event
+    */
+   public let category: String
+   /**
+    * The action of the event
+    */
+   public let action: String
+   /**
+    * The label of the event
+    */
+   public let label: String
+   /**
+    * A dictionary of additional parameters for the event
+    */
+   public let params: [String: String]
    /**
     * Initializes an `Event` instance.
     * - Parameters:
