@@ -90,9 +90,11 @@ extension Telemetry {
       ]
    }
    /**
-    * URL
-    * - Parameter parameters: Parameters to convert into a URL request
-    * - Remark: This function generates a URL from the given parameters
+    * Returns a URL constructed from the given parameters.
+    * - Description: This function generates a URL from the given parameters
+    * - Parameters:
+    *     - parameters: A dictionary of key-value pairs to be used as query parameters in the URL.
+    * - Returns: A URL constructed from the given parameters, or nil if the URL could not be constructed.
     */
    fileprivate static func getURL(with parameters: [String: String]) -> URL? {
        // Define the character set for URL path
