@@ -17,11 +17,11 @@ extension Telemetry {
             complete: complete // Completion handler to be called when the action is complete
          ) // Send the action to Google Analytics
       } else if case TMType.agg(let agg) = tmType { // If the telemetry type is not Google Analytics, 
-         do { 
+         do {
                try agg.append(action: action) // append the action to the aggregator
          }
          catch { // Catch and print any errors that occur when appending the action
-            Swift.print("Error: \(error.localizedDescription)") 
+            Swift.print("Error: \(error.localizedDescription)")
          }
       }
    }
@@ -39,7 +39,7 @@ extension Telemetry {
     */
    internal static func send(type: String?, parameters: [String: String], complete: Complete? = nil) {
       // Initialize query arguments with metadata
-      var queryArgs = Self.queryArgs 
+      var queryArgs = Self.queryArgs
       // If type is not nil and not empty, add it to the query arguments
       if let type: String = type, !type.isEmpty {
          queryArgs.updateValue(type, forKey: "t")

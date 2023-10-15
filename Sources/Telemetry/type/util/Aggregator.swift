@@ -77,7 +77,7 @@ extension Aggregator {
       // Write the string to a file
       FileModifier.write(filePath, content: content) // Create new file if non exists
    }
-   
+
    /**
     * Load previously saved aggregator
     * - Parameters:

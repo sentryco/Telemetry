@@ -49,7 +49,7 @@ extension Identity {
    fileprivate static var vendorID: String? {
       #if os(iOS)
       // For iOS, we return the identifier for vendor
-      return UIDevice.current.identifierForVendor?.uuidString 
+      return UIDevice.current.identifierForVendor?.uuidString
       #elseif os(macOS)
       // For macOS, we need to use IOServiceMatching to get the device
       let dev = IOServiceMatching("IOPlatformExpertDevice")
