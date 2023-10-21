@@ -21,15 +21,13 @@ extension Telemetry {
     * Flag to anonymize user's IP
     * - Description: To ensure GDPR compliance, Telemetry requests Google Analytics to anonymize user IPs by default. Set this to false to opt-out.
     */
-   public static var anonymizeIP = true
-
+   public static var anonymizeIP: Bool = true
    /**
     * Google Analytics Identifier (Tracker ID)
     * - Remark: This token can be obtained from the Google Analytics entity's admin page.
     * - Remark: A valid Google Analytics tracker ID (format: UA-XXXXX-XX) must be set before reporting any events.
     */
    public static var trackerId: String = "UA-XXXXX-XX"
-
    /**
     * Custom dimension arguments
     * - Description: A dictionary of custom key-value pairs to be added to every query.
@@ -47,7 +45,7 @@ extension Telemetry {
     * Network session
     * - Remark: Consider renaming to urlSession
     */
-   public static let session = URLSession.shared
+   public static let session: URLSession = .shared
    /**
     * Telemetry type
     * - Description: Allows switching between ga-endpoint and aggregator-endpoint

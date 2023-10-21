@@ -44,7 +44,7 @@ internal class System {
     * TODO: Consider handling different language formats (e.g., en-US, en-GB).
     */
    internal static let userLanguage: String = {
-      guard let locale = Locale.preferredLanguages.first, !locale.isEmpty else {
+      guard let locale: String = Locale.preferredLanguages.first, !locale.isEmpty else {
          return "(not set)"
       }
       return locale
@@ -73,11 +73,11 @@ internal class System {
     // Check if the OS is macOS
     #if os(macOS)
       // Get the OS version
-      let osVersion = ProcessInfo.processInfo.operatingSystemVersionString
+      let osVersion: String = ProcessInfo.processInfo.operatingSystemVersionString
       // Replace "." with "_" in the version string
-      let versionString = osVersion.replacingOccurrences(of: ".", with: "_")
+      let versionString: String = osVersion.replacingOccurrences(of: ".", with: "_")
       // Define the user agent for macOS
-      let fallbackAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X \(versionString)) AppleWebKit/603.2.4 (KHTML, like Gecko) \(appName)/\(appVersion)" // swiftlint:disable:this line_length
+      let fallbackAgent: String = "Mozilla/5.0 (Macintosh; Intel Mac OS X \(versionString)) AppleWebKit/603.2.4 (KHTML, like Gecko) \(appName)/\(appVersion)" // swiftlint:disable:this line_length
       #else
       // If not macOS, then it's iOS. Get the device details
       let currentDevice = UIDevice.current

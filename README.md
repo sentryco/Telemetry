@@ -9,7 +9,6 @@
 
 > Telemetry is an open-source SDK for Google Analytics. We believe in transparency and security, hence the open-source approach.
 
-
 ## Installation
 You can add Telemetry to your `Package.swift` file:
 
@@ -41,7 +40,6 @@ Telemetry.screenView("Cheers")
 
 ### Sessions
 By calling `session(start: true)` when the application opens and `session(start: false)` when it closes, you can track individual user sessions. Here's an example of how to do this in your `UIApplicationDelegate` application:
-
 
 ```swift
 Telemetry.trackerID = "UA-XXXXX-XX")
@@ -79,7 +77,6 @@ Telemetry.timing(category: "Database", variable: "Fetch", time: elapsedTime, lab
 - When setting up your Google Analytics account, ensure to use the legacy `Universal Analytics property` and not GA4. This legacy option is under the advanced menu during account setup.
 - Why are closed-source SDKs a concern? According to Apple's app-review guidelines: `Ensure that all software frameworks and dependencies also adhere to the App Store Review Guidelines`.
 
-
 ### Resources:
 - Anonymous GA: https://stackoverflow.com/questions/50392242/how-anonymize-google-analytics-for-ios-for-gdpr-rgpd-purpose
 - Guide on fingerprinting in iOS: https://nshipster.com/device-identifiers/
@@ -87,7 +84,6 @@ Telemetry.timing(category: "Database", variable: "Fetch", time: elapsedTime, lab
 - Noteworthy tracker project: https://github.com/kafejo/Tracker-Aggregator
 - Another noteworthy tracker project: https://github.com/devxoul/Umbrella
 - Using Google Analytics for Tracking SaaS: https://reflectivedata.com/using-google-analytics-for-tracking-saas/
-
 
 ### Todo:
 - Add info to this readme on how to setup Google analytics for your google account etc 🚧

@@ -46,7 +46,7 @@ extension Telemetry {
       }
       // If custom dimensions are not nil, merge them into the query arguments
       if let customDim: [String: String] = self.customDimArgs {
-         queryArgs.merge(customDim) { _, new in new }
+         queryArgs.merge(customDim) { (_: String, new: String) in new }
       }
       // Update the "aip" key in the query arguments based on the anonymizeIP flag
       queryArgs["aip"] = anonymizeIP ? "1" : nil
@@ -55,9 +55,9 @@ extension Telemetry {
       // Generate a URL with the arguments, return if URL generation fails
       guard let url: URL = Self.getURL(with: arguments) else { return }
       // Create a data task with the URL
-      let task = session.dataTask(with: url) { _, _, error in
+      let task: URLSessionDataTask = session.dataTask(with: url) { (_ : Data?, _ : URLResponse?, error: Error?) in
          // If there is an error, print it and call the completion handler with false
-         if let errorResponse = error?.localizedDescription {
+         if let errorResponse: String = error?.localizedDescription {
             Swift.print("⚠️️ Failed to deliver GA Request. ", errorResponse)
             complete?(false)
          }

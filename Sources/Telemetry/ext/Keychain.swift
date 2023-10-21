@@ -14,7 +14,7 @@ internal class Keychain {
     */
    internal static func set(key: String, value: String) throws {
       // Convert the string value to data
-      guard let valueData = value.data(using: .utf8) else {
+      guard let valueData: Data = value.data(using: .utf8) else {
          Swift.print("Keychain: Unable to store data, invalid input - key: \(key), value: \(value)")
          return
       }
@@ -54,7 +54,7 @@ internal class Keychain {
       ]
       var result: AnyObject?
       // Load the item from the keychain
-      let resultCodeLoad = withUnsafeMutablePointer(to: &result) {
+      let resultCodeLoad: OSStatus = withUnsafeMutablePointer(to: &result) {
          SecItemCopyMatching(queryLoad as CFDictionary, UnsafeMutablePointer($0))
       }
       if resultCodeLoad != 0 { // Checks if the result code for loading the keychain data is not 0
@@ -62,7 +62,8 @@ internal class Keychain {
          return nil // Returns nil if the keychain data cannot be loaded
       }
       // Convert the data to a string
-      guard let resultVal = result as? NSData, let keyValue = NSString(data: resultVal as Data, encoding: String.Encoding.utf8.rawValue) as String? else {
+      guard let resultVal: NSData = result as? NSData, 
+            let keyValue: String = NSString(data: resultVal as Data, encoding: String.Encoding.utf8.rawValue) as String? else {
          print("Keychain: error parsing keychain result - \(resultCodeLoad)")
          return nil
       }
@@ -85,7 +86,7 @@ extension Keychain {
          kSecAttrAccount as String: itemKey as AnyObject // Define the account attribute of the item to be deleted
       ]
       // Delete the item from the keychain
-      let resultCodeDelete = SecItemDelete(queryDelete as CFDictionary)
+      let resultCodeDelete: OSStatus = SecItemDelete(queryDelete as CFDictionary)
       if resultCodeDelete != 0 { // Checks if the result code for deleting the keychain item is not 0
          print("Keychain: unable to delete from keychain: \(resultCodeDelete)") // Prints an error message with the result code if the keychain item cannot be deleted
       } else {
