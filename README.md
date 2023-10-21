@@ -90,4 +90,4 @@ Telemetry.timing(category: "Database", variable: "Fetch", time: elapsedTime, lab
 
 
 ### Todo:
-- Add documentation to this readme on how to setup Google analytics for your google account etc 🚧
+- Add info to this readme on how to setup Google analytics for your google account etc 🚧
