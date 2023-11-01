@@ -11,14 +11,15 @@ extension Telemetry {
     *   - complete: Use complete only for the GA type
     */
    public static func action(_ action: ActionKind, complete: Complete? = nil) {
-      if case TMType.ga = tmType { // Check if the telemetry type is Google Analytics
+      switch tmType {
+      case TMType.ga: // Check if the telemetry type is Google Analytics
          send(type: action.key, // Type of action being sent
-            parameters: action.output, // Parameters associated with the action
-            complete: complete // Completion handler to be called when the action is complete
+              parameters: action.output, // Parameters associated with the action
+              complete: complete // Completion handler to be called when the action is complete
          ) // Send the action to Google Analytics
-      } else if case TMType.agg(let agg) = tmType { // If the telemetry type is not Google Analytics, 
+      case TMType.agg(let agg): // If the telemetry type is not Google Analytics,
          do {
-               try agg.append(action: action) // append the action to the aggregator
+            try agg.append(action: action) // append the action to the aggregator
          }
          catch { // Catch and print any errors that occur when appending the action
             Swift.print("Error: \(error.localizedDescription)")
@@ -31,12 +32,13 @@ extension Telemetry {
  */
 extension Telemetry {
     /**
-    * - Remark: If you encounter: swift a server with the specified hostname could not be found. Ensure to enable outgoing network in sandbox: https://stackoverflow.com/a/57292829/5389500
-    * - Parameters:
-    *   - parameters: Custom parameters for the type
-    *   - type: The type of telemetry data (timing, exception, pageview, session, exception etc)
-    *   - complete: Callback with success or failure. Useful for Unit-testing when dealing with asynchronous code etc
-    */
+     * - Remark: If you encounter: swift a server with the specified hostname could not be found. Ensure to enable outgoing network in sandbox: https://stackoverflow.com/a/57292829/5389500
+     * - Fixme: ⚠️️ Should we put this on a background thread?
+     * - Parameters:
+     *   - parameters: Custom parameters for the type
+     *   - type: The type of telemetry data (timing, exception, pageview, session, exception etc)
+     *   - complete: Callback with success or failure. Useful for Unit-testing when dealing with asynchronous code etc
+     */
    internal static func send(type: String?, parameters: [String: String], complete: Complete? = nil) {
       // Initialize query arguments with metadata
       var queryArgs = Self.queryArgs
