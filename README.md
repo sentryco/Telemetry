@@ -23,7 +23,7 @@ dependencies: [
 - 🐛 GA is an excellent tool for error and crash reporting. Stay ahead of UX issues by receiving notifications about bugs.
 - 🌍 GA helps you understand the geographical distribution of your app's users.
 
-> **Warning**  
+> [!IMPORTANT]  
 > We currently use the GA3 API, which will be deprecated in July. We plan to migrate to GA4 before then.
 
 ### Event Tracking
