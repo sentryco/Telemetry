@@ -21,7 +21,7 @@ extension Telemetry {
     * Flag to anonymize user's IP
     * - Description: To ensure GDPR compliance, Telemetry requests Google Analytics to anonymize user IPs by default. Set this to false to opt-out.
     */
-   public static var anonymizeIP: Bool = true
+   public static var anonymizeIP = true
    /**
     * Google Analytics Identifier (Tracker ID)
     * - Remark: This token can be obtained from the Google Analytics entity's admin page.

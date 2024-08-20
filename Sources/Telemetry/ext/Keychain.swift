@@ -62,7 +62,7 @@ internal class Keychain {
          return nil // Returns nil if the keychain data cannot be loaded
       }
       // Convert the data to a string
-      guard let resultVal: NSData = result as? NSData, 
+      guard let resultVal: NSData = result as? NSData,
             let keyValue: String = NSString(data: resultVal as Data, encoding: String.Encoding.utf8.rawValue) as String? else {
          print("Keychain: error parsing keychain result - \(resultCodeLoad)")
          return nil
