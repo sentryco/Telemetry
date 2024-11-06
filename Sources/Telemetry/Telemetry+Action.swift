@@ -20,8 +20,7 @@ extension Telemetry {
       case TMType.agg(let agg): // If the telemetry type is not Google Analytics,
          do {
             try agg.append(action: action) // append the action to the aggregator
-         }
-         catch { // Catch and print any errors that occur when appending the action
+         } catch { // Catch and print any errors that occur when appending the action
             Swift.print("Error: \(error.localizedDescription)")
          }
       }
@@ -57,7 +56,7 @@ extension Telemetry {
       // Generate a URL with the arguments, return if URL generation fails
       guard let url: URL = Self.getURL(with: arguments) else { return }
       // Create a data task with the URL
-      let task: URLSessionDataTask = session.dataTask(with: url) { (_ : Data?, _ : URLResponse?, error: Error?) in
+      let task: URLSessionDataTask = session.dataTask(with: url) { (_: Data?, _: URLResponse?, error: Error?) in
          // If there is an error, print it and call the completion handler with false
          if let errorResponse: String = error?.localizedDescription {
             Swift.print("⚠️️ Failed to deliver GA Request. ", errorResponse)

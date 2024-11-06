@@ -69,7 +69,7 @@ extension TelemetryTests {
       // Set the identifier type for the Telemetry
       Telemetry.idType = .userdefault // vendor doesn't work on mac or command-line-unit-test, and keychain doesnt work in comandline-unit-tests in an easy way
       // Set the tracker ID for the Telemetry
-      Telemetry.trackerId = "UA-XXXXX-XX" //"" // Use real ga-tracker-id here, to test properly etc
+      Telemetry.trackerId = "UA-XXXXX-XX" // "" // Use real ga-tracker-id here, to test properly etc
       // Create an expectation for a screen view function
       let screenView = testCase.expectation(description: "screen view function")
       // Call the screen view function and print whether it was successful
