@@ -45,11 +45,13 @@ extension Identity {
     * - Remark: Changes on every simulator run etc (allegedly) - Fixme: ⚠️️ confirm this
     * - Remark: Should persist between release app runs, but beta apps might generate new UUID.
     * - Remark: The MAC doesn't have anything equivalent to iOS's identifierForVendor or advertising Id alas.
+    * - Fixme: ⚠️️ for swift 6.0 we will need to fence UIDevice in serlialized main thread. Check with copilot etc
     */
    fileprivate static var vendorID: String? {
       #if os(iOS)
       // For iOS, we return the identifier for vendor
-      return UIDevice.current.identifierForVendor?.uuidString
+//      return UIDevice.current.identifierForVendor?.uuidString
+      fatalError()
       #elseif os(macOS)
       // For macOS, we need to use IOServiceMatching to get the device
       let dev = IOServiceMatching("IOPlatformExpertDevice")

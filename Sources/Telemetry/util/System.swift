@@ -51,8 +51,9 @@ internal class System {
    }()
    /**
     * Provides the screen resolution of the user's device.
+    * - Fixme: ⚠️️ for swift 6.0 we will need to fence UIScreen in serlialized main thread. Check with copilot etc
     */
-   internal static let screenResolution: String = {
+   internal static var screenResolution: String {
       // Check if the operating system is iOS
       #if os(iOS)
       // Get the size of the screen in native points
@@ -64,12 +65,13 @@ internal class System {
       #endif
       // Return the screen resolution as a string in the format "width x height"
       return "\(size.width)x\(size.height)"
-   }()
+   }
    /**
     * Provides the user agent string for the current device and OS.
     * - Note: This is useful for identifying the device and OS in web requests.
+    * - Fixme: ⚠️️ for swift 6.0 we will need to fence UIDevice in serlialized main thread. Check with copilot etc
     */
-   internal static let userAgent: String = {
+   internal static var userAgent: String {
     // Check if the OS is macOS
     #if os(macOS)
       // Get the OS version
@@ -86,7 +88,6 @@ internal class System {
       // Define the user agent for iOS
       let fallbackAgent = "Mozilla/5.0 (\(currentDevice.model); CPU iPhone OS \(osVersion) like Mac OS X) AppleWebKit/601.1.46 (KHTML, like Gecko) Mobile/13T534YI" // swiftlint:disable:this line_length
       #endif
-
       // Check if the app supports WebKit
       #if SUPPORTS_WEBKIT
       // Create a WKWebView instance
@@ -110,5 +111,5 @@ internal class System {
       // If not supporting WebKit, return the fallback user agent
       return fallbackAgent
       #endif
-   }()
+   }
 }

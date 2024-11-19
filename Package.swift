@@ -1,9 +1,9 @@
-// swift-tools-version: 5.6
+// swift-tools-version: 5.9
 import PackageDescription // imports the PackageDescription module
 
 let package = Package( // initializes a new package
     name: "Telemetry", // sets the package name to "Telemetry"
-    platforms: [.iOS(.v15), .macOS(.v12)], // sets the supported platforms to iOS 15 and macOS 12
+    platforms: [.iOS(.v17), .macOS(.v14)], // sets the supported platforms to iOS 15 and macOS 12
     products: [ // defines the products of the package
         .library( // creates a new library product
             name: "Telemetry", // sets the library name to "Telemetry"

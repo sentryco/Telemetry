@@ -21,12 +21,14 @@ extension Telemetry {
     * Flag to anonymize user's IP
     * - Description: To ensure GDPR compliance, Telemetry requests Google Analytics to anonymize user IPs by default. Set this to false to opt-out.
     */
+   nonisolated(unsafe) // ⚠️️ swift 6.0 support
    public static var anonymizeIP = true
    /**
     * Google Analytics Identifier (Tracker ID)
     * - Remark: This token can be obtained from the Google Analytics entity's admin page.
     * - Remark: A valid Google Analytics tracker ID (format: UA-XXXXX-XX) must be set before reporting any events.
     */
+   nonisolated(unsafe) // ⚠️️ swift 6.0 support
    public static var trackerId: String = "UA-XXXXX-XX"
    /**
     * Custom dimension arguments
@@ -34,12 +36,14 @@ extension Telemetry {
     * - Remark: Useful for custom dimensions (cd1, cd2...).
     * - Note: For more information on Custom Dimensions, visit https://support.google.com/analytics/answer/2709828?hl=en
     */
+   nonisolated(unsafe) // ⚠️️ swift 6.0 support
    public static var customDimArgs: [String: String]?
    /**
     * Identifier type
     * - Remark: Defines the type of persistence. Options are: .vendor, .userdef, .keychain
     * - Fixme: Consider renaming to currentIdentifierType or curIdType
     */
+   nonisolated(unsafe) // ⚠️️ swift 6.0 support
    public static var idType: IDType = .userdefault
    /**
     * Network session
@@ -51,5 +55,6 @@ extension Telemetry {
     * - Description: Allows switching between ga-endpoint and aggregator-endpoint
     * - Fixme: Consider renaming to endPointType or EPType
     */
+   nonisolated(unsafe) // ⚠️️ swift 6.0 support
    public static var tmType: TMType = .ga // .agg()
 }

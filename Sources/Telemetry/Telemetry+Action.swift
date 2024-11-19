@@ -60,6 +60,7 @@ extension Telemetry {
          // If there is an error, print it and call the completion handler with false
          if let errorResponse: String = error?.localizedDescription {
             Swift.print("⚠️️ Failed to deliver GA Request. ", errorResponse)
+            // - Fixme: ⚠️️ This has a warning in swift 6.0: Capture of 'complete' with non-sendable type 'Telemetry.Complete?' (aka 'Optional<(Bool) -> ()>') in a `@Sendable` closure
             complete?(false)
          }
          // If there is no error, call the completion handler with true
