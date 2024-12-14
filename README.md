@@ -24,7 +24,7 @@ dependencies: [
 - 🌍 GA helps you understand the geographical distribution of your app's users.
 
 > [!IMPORTANT]  
-> We currently use the GA3 API, which will be deprecated in July. We plan to migrate to GA4 before then.
+> We currently use the GA3 API, which will be deprecated in July. We plan to migrate to GA4 before then. GA4 is now available here [https://github.com/sentryco/Telemetric](https://github.com/sentryco/Telemetric) 
 
 ### Event Tracking
 With Telemetry's `event()` method, you can monitor any event of interest.
