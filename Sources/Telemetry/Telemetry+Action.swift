@@ -7,7 +7,7 @@ extension Telemetry {
     * - Remark: For a comprehensive list of all the supported parameters, please refer to the [Google Analytics parameter reference](https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters)
     * - Fixme: ⚠️️ Add an example here
     * - Parameters:
-    *   - action: The action to be performed - Fixme: ⚠️️ Add more documentation here
+    *   - action: The action to be performed, which can be of type `ActionKind`. This parameter specifies the kind of action being tracked, such as a session, screen view, event, or timing.
     *   - complete: Use complete only for the GA type
     */
    public static func action(_ action: ActionKind, complete: Complete? = nil) {
